@@ -27,9 +27,8 @@ This site was built without inventing any client names, results, credentials, co
 
 ## 3. Brand and logo
 
-- **Logo master:** the guidelines describe the supplied logo as "a vector recreation, not a formally approved final identity". The site uses the symbol paths from `DemandDrive_Studio_Logo.svg` unchanged. The wordmark is set in Inter and spaced to match the approved PNG lock-up, because the supplied SVG's wordmark uses Arial with overlapping text positions.
-  - **Action:** once the final logo is signed off, supply an outlined (text converted to paths) SVG master. Replace the contents of `src/components/layout/Logo.tsx`, then run `npm run icons` to regenerate the favicon and social images.
-  - The vector symbol differs slightly from the PNG concept (arrowhead shape and the gap between the arrow and the D). Confirm which is final.
+- **Logo master:** the site uses `brand/DemandDrive_Studio_Logo_Editable.svg`, the editable Illustrator export supplied on 28 October 2026. Its shapes, text positions and sizes are used unchanged in `src/components/layout/Logo.tsx`. The favicon and social image are generated from the same symbol.
+  - The wordmark in that file is live Helvetica text, not outlines. The site pins each word to its Helvetica width, so devices without Helvetica (e.g. Windows, which uses Arial) show the same lock-up. For a pixel-exact master, export a version with the text converted to outlines, then replace `Logo.tsx` and run `npm run icons`.
 - **Name, domain and trademark checks**, as recommended in the guidelines, are outstanding.
 - **Reverse logo:** the footer uses a white logo on navy with the electric-blue arrow, as the guidelines allow ("use a blue accent only where contrast remains strong"). Confirm this is acceptable.
 

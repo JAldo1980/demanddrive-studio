@@ -19,7 +19,7 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4">
             <Link to="/" aria-label="DemandDrive Studio home" className="inline-block">
-              <Logo variant="reverse" className="h-12 w-auto" />
+              <Logo variant="reverse" className="h-14 w-auto" />
             </Link>
             <p className="mt-6 max-w-sm leading-relaxed text-on-navy-muted">{site.positioning}</p>
           </div>

@@ -8,14 +8,17 @@ import { Resvg } from '@resvg/resvg-js'
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const pub = join(root, 'public')
 
-// Symbol paths from brand/DemandDrive_Studio_Logo.svg (unchanged).
+// Symbol shapes from brand/DemandDrive_Studio_Logo_Editable.svg (unchanged).
+// They sit at x 141–415, y 190–450 on the master artboard, so shift to the origin.
 const symbol = (d = '#0B1F3A', a = '#1769FF') => `
-  <path d="M0,0 H125 C207,0 255,48 255,130 C255,212 207,260 125,260 H58 L113,205 H128 C166,205 187,177 187,130 C187,83 166,55 128,55 H55 V104 L0,160 Z" fill="${d}"/>
-  <path d="M0,260 L73,260 L151,182 L173,204 L173,126 L95,126 L117,148 Z" fill="${a}"/>`
+  <g transform="translate(-141 -190)">
+    <path fill-rule="evenodd" d="M160,190h125c82,0,130,48,130,130s-48,130-130,130h-67l55-55h15c38,0,59-28,59-75s-21-75-59-75h-73v49l-55,56v-160Z" fill="${d}"/>
+    <polygon fill-rule="evenodd" points="141 412.91 214 412.91 292 334.91 314 356.91 314 278.91 236 278.91 258 300.91 141 412.91" fill="${a}"/>
+  </g>`
 
 const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320">
   <rect width="320" height="320" rx="64" fill="#FFFFFF"/>
-  <g transform="translate(32.5 30)">${symbol()}</g>
+  <g transform="translate(23 30)">${symbol()}</g>
 </svg>`
 
 const og = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
