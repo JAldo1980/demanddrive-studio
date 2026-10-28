@@ -1,7 +1,9 @@
 import { Link } from 'react-router'
+import { serviceFaqs } from '../content/faqs'
 import { services } from '../content/services'
 import { publishedProjects } from '../content/work'
 import { Approach } from '../components/sections/Approach'
+import { Faq } from '../components/sections/Faq'
 import { GrowthSystem } from '../components/sections/GrowthSystem'
 import { FinalCta } from '../components/sections/FinalCta'
 import { PageHero } from '../components/sections/PageHero'
@@ -89,6 +91,11 @@ export default function Services() {
       </section>
 
       <Approach />
+      <Faq
+        items={serviceFaqs}
+        title="Questions about our services"
+        intro="How the services fit together, where to start and what to expect."
+      />
       <FinalCta
         title="Not sure which service you need?"
         text="Most engagements start with a conversation about your objectives and current activity. We will recommend where to focus, even if that means starting small."

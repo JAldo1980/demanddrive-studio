@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { site } from '../config/site'
-import { faqs } from '../content/faqs'
+import { faqsByPath } from '../content/faqs'
 import type { PageMeta } from '../routes'
 
 const OG_IMAGE = '/og-image.png'
@@ -60,12 +60,12 @@ export function renderHead(meta: PageMeta) {
           ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),
         })}</script>`
       : ''
-  const faqLd =
-    meta.path === '/'
+  const pageFaqs = faqsByPath[meta.path]
+  const faqLd = pageFaqs
       ? `<script type="application/ld+json">${JSON.stringify({
           '@context': 'https://schema.org',
           '@type': 'FAQPage',
-          mainEntity: faqs.map((f) => ({
+          mainEntity: pageFaqs.map((f) => ({
             '@type': 'Question',
             name: f.question,
             acceptedAnswer: { '@type': 'Answer', text: f.answer },

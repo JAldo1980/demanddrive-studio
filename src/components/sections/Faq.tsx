@@ -1,8 +1,20 @@
-import { faqs } from '../../content/faqs'
+import { faqs as generalFaqs, type Faq as FaqItem } from '../../content/faqs'
 import { Section } from '../ui/Section'
 import { SectionHeading } from '../ui/SectionHeading'
 
-export function Faq({ tone = 'white' }: { tone?: 'white' | 'cool' }) {
+type FaqProps = {
+  items?: FaqItem[]
+  title?: string
+  intro?: string
+  tone?: 'white' | 'cool'
+}
+
+export function Faq({
+  items = generalFaqs,
+  title = 'Before you get in touch',
+  intro = 'Straight answers to the questions we are asked most often.',
+  tone = 'white',
+}: FaqProps) {
   return (
     <Section tone={tone} labelledBy="faq-title">
       <div className="grid gap-10 lg:grid-cols-12">
@@ -10,11 +22,11 @@ export function Faq({ tone = 'white' }: { tone?: 'white' | 'cool' }) {
           id="faq-title"
           className="lg:col-span-4"
           eyebrow="Questions"
-          title="Before you get in touch"
-          intro="Straight answers to the questions we are asked most often."
+          title={title}
+          intro={intro}
         />
         <div className="divide-y divide-line border-y border-line lg:col-span-8">
-          {faqs.map((f) => (
+          {items.map((f) => (
             <details key={f.question} className="group">
               <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-5 text-lg font-semibold text-navy hover:text-electric [&::-webkit-details-marker]:hidden">
                 {f.question}
