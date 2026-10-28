@@ -17,14 +17,14 @@ This site was built without inventing any client names, results, credentials, co
 - **Results from previous roles** may be published, anonymised and labelled **Previous role** (`src/content/work.ts`, `TrackRecord.tsx`).
 - **Head of Commercial quote:** the "…the work your team have done" wording is correct, and may be published anonymously (`src/content/testimonials.ts`). The board report excerpt may also be published.
 - **The Circle Line** is happy to appear, named and linked. The project uses a screenshot of their live homepage (`public/images/work/the-circle-line-home.webp`), captured on 28 October 2026. Retake it if their site changes.
+- **LinkedIn recommendations** from Ryan Watson, Alison Davey, Marius Adam and Gemma Threlfall are quoted with their names, as shown publicly on LinkedIn. The text is exact; "…" marks where it is shortened. It is courteous to let them know they appear on the site.
+- **Certifications** listed on the About page are the current or still-relevant ones from LinkedIn (`src/content/about.ts`). Expired or off-brief certificates (Google Ads, Webflow 101, 2019 HubSpot certificates, SEMrush social media) are left out. Update the HubSpot certificate when it is renewed; it expires in March 2027.
 - The coatings case study lists paid media accurately as part of that historical work, even though paid media is no longer an offered service.
 
 ## 3. Content to supply when available
 
 | Item | Where | Notes |
 | --- | --- | --- |
-| LinkedIn recommendations | `src/content/testimonials.ts` | LinkedIn could not be read without signing in. Paste two or three recommendations and confirm the recommenders are happy to be quoted. They would sit alongside the client quotes. |
-| Certificates and accreditations | `src/content/about.ts` (`qualifications`) | The Level 6 Diploma and Leeds degree are listed. Add any certificates from LinkedIn you want shown. |
 | Real results for DemandDrive Studio clients | `src/content/work.ts` | Add with `kind: 'client'` once clients agree. Include an `outcome` only if it is verifiable. |
 | More photography | `brand/photos/`, `public/images/` | The portrait and headshot come from your decks (originals kept in `brand/photos/`). The decks also contain event photos (TechCrunch Disrupt, an awards night) that could illustrate the About page. |
 | Pricing or engagement models | Not on the site | The FAQs deliberately avoid prices and minimum engagements. Add an answer if you want to set expectations. |

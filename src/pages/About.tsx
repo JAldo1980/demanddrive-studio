@@ -4,7 +4,9 @@ import { Container } from '../components/ui/Container'
 import { Section } from '../components/ui/Section'
 import { Eyebrow, SectionHeading } from '../components/ui/SectionHeading'
 import { site } from '../config/site'
-import { boardLanguage, qualifications, roles, strengths, tools } from '../content/about'
+import { QuoteCard } from '../components/QuoteCard'
+import { boardLanguage, certifications, qualifications, roles, strengths, tools } from '../content/about'
+import { recommendations } from '../content/testimonials'
 
 const audience = [
   { title: 'Sectors', text: 'Manufacturing, engineering, industrial and technical markets, and professional services.' },
@@ -140,9 +142,20 @@ export default function About() {
                 </li>
               ))}
             </ul>
+            <h3 className="mt-10 text-sm font-semibold text-navy">Certifications</h3>
+            <ul className="mt-4 divide-y divide-line border-y border-line">
+              {certifications.map((c) => (
+                <li key={c.name} className="py-3">
+                  <span className="block font-medium text-navy">{c.name}</span>
+                  <span className="text-sm text-muted">
+                    {c.issuer} · {c.year}
+                  </span>
+                </li>
+              ))}
+            </ul>
             {linkedIn && (
               <p className="mt-6 text-muted">
-                Certificates, recommendations and accreditations are on{' '}
+                Credentials can be verified on{' '}
                 <a href={linkedIn.href} target="_blank" rel="me noopener" className="font-medium text-electric underline underline-offset-2">
                   my LinkedIn profile<span className="sr-only"> (opens in a new tab)</span>
                 </a>
@@ -163,7 +176,35 @@ export default function About() {
         </div>
       </Section>
 
-      <Section labelledBy="audience-title">
+      {recommendations.length > 0 && (
+        <Section labelledBy="recommendations-title">
+          <SectionHeading
+            id="recommendations-title"
+            eyebrow="Recommendations"
+            title="What people say about working with me"
+            intro="From clients, colleagues and marketers I have mentored, as written on LinkedIn."
+          />
+          <ul className="mt-12 grid gap-6 md:grid-cols-2">
+            {recommendations.map((t) => (
+              <li key={t.quote} className="rounded-2xl border border-line">
+                <QuoteCard testimonial={t} />
+              </li>
+            ))}
+          </ul>
+          {linkedIn && (
+            <a
+              href={`${linkedIn.href}details/recommendations/`}
+              target="_blank"
+              rel="noopener"
+              className="mt-8 inline-flex items-center gap-2 font-semibold text-electric underline-offset-2 hover:underline"
+            >
+              Read the full recommendations on LinkedIn<span className="sr-only"> (opens in a new tab)</span>
+            </a>
+          )}
+        </Section>
+      )}
+
+      <Section tone="cool" labelledBy="audience-title">
         <SectionHeading id="audience-title" eyebrow="Who I work with" title="Built for B2B businesses with complex sales" />
         <dl className="mt-12 grid gap-8 md:grid-cols-3">
           {audience.map((a) => (

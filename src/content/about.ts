@@ -53,8 +53,20 @@ export const boardLanguage = [
 ]
 
 export const qualifications = [
-  'Level 6 Professional Diploma in Digital Marketing, Institute of Digital Marketing',
+  'Professional Diploma in Digital Marketing (Level 6, degree equivalent), The Institute of Direct and Digital Marketing (IDM), 2015',
   'BA (Hons) International Development and Politics, University of Leeds',
+]
+
+/** Current or still-relevant certifications, from LinkedIn. Expired ones are left out. */
+export const certifications = [
+  { name: 'Digital Marketing Certified', issuer: 'HubSpot Academy', year: '2026' },
+  { name: 'The Fundamentals of Digital Marketing', issuer: 'Google', year: '2019' },
+  {
+    name: 'SEO learning path: Technical SEO, Local SEO, Keyword Strategy, Link Building and SEO Foundations',
+    issuer: 'LinkedIn Learning',
+    year: '2021',
+  },
+  { name: 'UX Design and User Experience Design (Theory)', issuer: 'Udemy', year: '2020' },
 ]
 
 export const tools = [
