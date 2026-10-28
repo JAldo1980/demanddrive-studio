@@ -8,3 +8,16 @@ interface ImportMetaEnv {
 interface ImportMeta {
   readonly env: ImportMetaEnv
 }
+
+declare module '*.md' {
+  const post: {
+    title: string
+    description: string
+    date: string
+    tags?: string[]
+    draft?: boolean
+    html: string
+    readingMinutes: number
+  }
+  export default post
+}

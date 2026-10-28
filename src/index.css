@@ -80,3 +80,75 @@
   font-size: 1.55cqw;
   line-height: 1.35;
 }
+
+/* Long-form article text for Insights posts (HTML generated from Markdown). */
+@utility prose-article {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: var(--color-charcoal);
+
+  & > * + * {
+    margin-top: 1.25em;
+  }
+  & h2 {
+    margin-top: 2.2em;
+    font-size: 1.75rem;
+    line-height: 1.25;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--color-navy);
+  }
+  & h3 {
+    margin-top: 1.8em;
+    font-size: 1.3rem;
+    line-height: 1.35;
+    font-weight: 600;
+    color: var(--color-navy);
+  }
+  & h2 + *,
+  & h3 + * {
+    margin-top: 0.6em;
+  }
+  & a {
+    color: var(--color-electric);
+    font-weight: 500;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  & strong {
+    color: var(--color-navy);
+    font-weight: 600;
+  }
+  & ul,
+  & ol {
+    padding-left: 1.4em;
+  }
+  & ul {
+    list-style: disc;
+  }
+  & ol {
+    list-style: decimal;
+  }
+  & li + li {
+    margin-top: 0.4em;
+  }
+  & li::marker {
+    color: var(--color-electric);
+  }
+  & blockquote {
+    border-left: 3px solid var(--color-electric);
+    padding-left: 1.2em;
+    font-size: 1.2rem;
+    color: var(--color-navy);
+  }
+  & hr {
+    border-color: var(--color-line);
+    margin: 2.5em 0;
+  }
+  & code {
+    background: var(--color-cool);
+    border-radius: 4px;
+    padding: 0.1em 0.35em;
+    font-size: 0.9em;
+  }
+}

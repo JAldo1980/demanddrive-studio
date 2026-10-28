@@ -8,7 +8,7 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const dist = join(root, 'dist')
 const serverDir = join(root, 'dist-server')
 
-const { render, renderHead, pages, notFoundMeta, site } = await import(
+const { render, renderHead, pages, notFoundMeta, site, posts } = await import(
   pathToFileURL(join(serverDir, 'entry-server.js')).href
 )
 
@@ -44,6 +44,37 @@ await writeFile(
 )
 await writeFile(join(dist, 'robots.txt'), `User-agent: *\nAllow: /\n\nSitemap: ${site.url}/sitemap.xml\n`)
 console.log('  wrote sitemap.xml and robots.txt')
+
+// RSS feed for Insights posts
+const xml = (v) => String(v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+const items = posts
+  .filter((p) => !p.draft)
+  .map(
+    (p) => `    <item>
+      <title>${xml(p.title)}</title>
+      <link>${site.url}/insights/${p.slug}</link>
+      <guid>${site.url}/insights/${p.slug}</guid>
+      <pubDate>${new Date(`${p.date}T09:00:00Z`).toUTCString()}</pubDate>
+      <description>${xml(p.description)}</description>
+    </item>`,
+  )
+  .join('\n')
+await mkdir(join(dist, 'insights'), { recursive: true })
+await writeFile(
+  join(dist, 'insights', 'rss.xml'),
+  `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>${xml(site.name)} Insights</title>
+    <link>${site.url}/insights</link>
+    <description>Practical thinking on B2B demand and conversion.</description>
+    <language>en-gb</language>
+${items}
+  </channel>
+</rss>
+`,
+)
+console.log('  wrote insights/rss.xml')
 
 await rm(serverDir, { recursive: true, force: true })
 

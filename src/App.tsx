@@ -3,6 +3,8 @@ import { Layout } from './components/layout/Layout'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Home from './pages/Home'
+import InsightPost from './pages/InsightPost'
+import Insights from './pages/Insights'
 import NotFound from './pages/NotFound'
 import Privacy from './pages/Privacy'
 import Services from './pages/Services'
@@ -16,6 +18,8 @@ export default function App() {
         <Route index element={<Home />} />
         <Route path="work" element={<Work />} />
         <Route path="work/:slug" element={<WorkDetail />} />
+        <Route path="insights" element={<Insights />} />
+        <Route path="insights/:slug" element={<InsightPost />} />
         <Route path="services" element={<Services />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />

@@ -40,6 +40,7 @@ This site was built without inventing any client names, results, credentials, co
 
 All copy is in UK English and in the first person, as James. Figures and quotes appear only where they come from James's own materials, and are labelled with where they came from. The owner should still review:
 
+- **The starter Insights post**, "Why your B2B website isn't generating enquiries" (`src/content/insights/`). It is general advice in your voice, with no figures or client claims. Edit it freely, or set `draft: true` to hide it until you are happy.
 - **The About page** (`src/pages/About.tsx`, `src/content/about.ts`): your story, roles, strengths and the "I speak board" table, all drawn from your decks and portfolio.
 
 - Hero headline: "Generate better B2B demand. Convert more of it."

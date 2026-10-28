@@ -58,6 +58,9 @@ The build writes a static site to `dist/`:
 ```
 dist/
   index.html            /
+  insights.html         /insights
+  insights/<slug>.html  /insights/<slug>   (one per post)
+  insights/rss.xml      RSS feed for Insights
   work.html             /work
   work/<slug>.html      /work/<slug>   (one per project)
   services.html         /services
@@ -143,6 +146,25 @@ Inter is self-hosted through `@fontsource-variable/inter`, so there are no third
 4. Add it to `mainNav` in `src/routes.ts` if it belongs in the header.
 
 **Add individual service pages:** each service in `src/content/services.ts` has a stable `id`. Add a `services/:id` route, a page that looks the service up by `id`, and a `pages` entry for each service. Then change the links in `ServicesOverview` and the footer from `/services#id` to `/services/id`.
+
+**Write an Insights post:** add a Markdown file to `src/content/insights/`. The file name becomes the URL, so `local-seo-for-manufacturers.md` is published at `/insights/local-seo-for-manufacturers`. Start the file with front matter:
+
+```markdown
+---
+title: Local SEO for manufacturers
+description: One or two sentences for the listing, search results and social previews.
+date: 2026-11-15
+tags: SEO, Manufacturing
+draft: true
+---
+
+Write the article here in Markdown. Use ## for section headings.
+```
+
+- `draft: true` shows the post in `npm run dev` only (marked "Draft"); remove it, or set it to `false`, to publish.
+- Each post automatically gets its own page, an entry in the sitemap and RSS feed, Open Graph article tags and Article structured data, an author box and links to other posts.
+- Markdown is converted to HTML at build time (see `markdownPosts` in `vite.config.ts`), so no Markdown library is shipped to the browser.
+- A browser-based editor such as Pages CMS or Decap CMS can be added later; it would edit these same files in GitHub.
 
 **Add work:** add a project to `src/content/work.ts`. Each one gets a page at `/work/<slug>`, a sitemap entry and a card on the Work page; the first three also appear on the homepage. Use `kind: 'client'` only for real, approved client work, and set `outcome` only to a verifiable result. Concept projects never show results. For the preview, use an existing mock-up (`landing`, `redesign`, `audit`) or add one in `src/components/visuals/` and register it in `ProjectPreview.tsx`. Real screenshots can replace mock-ups later.
 

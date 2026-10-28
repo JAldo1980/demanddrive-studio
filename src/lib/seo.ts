@@ -24,7 +24,7 @@ function headTags(meta: PageMeta) {
     { tag: 'meta', key: 'description', attrs: { name: 'description', content: meta.description } },
     { tag: 'meta', key: 'robots', attrs: { name: 'robots', content: meta.noindex ? 'noindex, follow' : 'index, follow' } },
     { tag: 'link', key: 'canonical', attrs: { rel: 'canonical', href: url } },
-    { tag: 'meta', key: 'og:type', attrs: { property: 'og:type', content: 'website' } },
+    { tag: 'meta', key: 'og:type', attrs: { property: 'og:type', content: meta.article ? 'article' : 'website' } },
     { tag: 'meta', key: 'og:site_name', attrs: { property: 'og:site_name', content: site.name } },
     { tag: 'meta', key: 'og:locale', attrs: { property: 'og:locale', content: 'en_GB' } },
     { tag: 'meta', key: 'og:title', attrs: { property: 'og:title', content: meta.title } },
@@ -62,6 +62,20 @@ export function renderHead(meta: PageMeta) {
           ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),
         })}</script>`
       : ''
+  const articleLd = meta.article
+    ? `<meta property="article:published_time" content="${meta.article.published}" />
+    <script type="application/ld+json">${JSON.stringify({
+      '@context': 'https://schema.org',
+      '@type': 'Article',
+      headline: meta.title.replace(/ \| DemandDrive Studio$/, ''),
+      description: meta.description,
+      datePublished: meta.article.published,
+      author: { '@type': 'Person', name: site.founder.name, url: `${site.url}/about` },
+      publisher: { '@type': 'Organization', name: site.name, url: site.url },
+      mainEntityOfPage: canonicalUrl(meta),
+      ...(meta.article.tags?.length ? { keywords: meta.article.tags.join(', ') } : {}),
+    })}</script>`
+    : ''
   const pageFaqs = faqsByPath[meta.path]
   const faqLd = pageFaqs
       ? `<script type="application/ld+json">${JSON.stringify({
@@ -74,7 +88,7 @@ export function renderHead(meta: PageMeta) {
           })),
         })}</script>`
       : ''
-  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, jsonLd, faqLd].filter(Boolean).join('\n    ')
+  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, jsonLd, faqLd, articleLd].filter(Boolean).join('\n    ')
 }
 
 /** Client-side: keep the <head> in sync after in-app navigation. */

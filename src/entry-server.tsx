@@ -6,6 +6,7 @@ import App from './App'
 export { site } from './config/site'
 export { renderHead } from './lib/seo'
 export { pages, notFoundMeta } from './routes'
+export { posts } from './content/posts'
 
 export function render(url: string) {
   return renderToString(

@@ -1,3 +1,4 @@
+import { posts } from './content/posts'
 import { publishedProjects } from './content/work'
 
 /**
@@ -12,6 +13,8 @@ export type PageMeta = {
   /** Exclude from sitemap and ask search engines not to index. */
   noindex?: boolean
   priority?: number
+  /** Articles get article Open Graph tags and Article structured data. */
+  article?: { published: string; tags?: string[] }
 }
 
 export const pages: PageMeta[] = [
@@ -34,6 +37,21 @@ export const pages: PageMeta[] = [
     title: `${p.title}${p.kind === 'concept' ? ' (concept)' : ''} | DemandDrive Studio`,
     description: p.summary,
     priority: 0.6,
+  })),
+  {
+    path: '/insights',
+    title: 'Insights | DemandDrive Studio',
+    description:
+      'Practical articles on B2B demand generation, SEO, landing pages, measurement and reporting, by James Alderman.',
+    priority: 0.7,
+  },
+  ...posts.map((p) => ({
+    path: `/insights/${p.slug}`,
+    title: `${p.title} | DemandDrive Studio`,
+    description: p.description,
+    priority: 0.6,
+    noindex: p.draft,
+    article: { published: p.date, tags: p.tags },
   })),
   {
     path: '/services',
@@ -81,6 +99,7 @@ export function getPageMeta(pathname: string): PageMeta {
 export const mainNav = [
   { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
+  { to: '/insights', label: 'Insights' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },
 ]
