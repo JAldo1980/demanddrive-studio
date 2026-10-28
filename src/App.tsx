@@ -2,6 +2,7 @@ import { Route, Routes } from 'react-router'
 import { Layout } from './components/layout/Layout'
 import About from './pages/About'
 import Contact from './pages/Contact'
+import FreeAudit from './pages/FreeAudit'
 import Home from './pages/Home'
 import InsightPost from './pages/InsightPost'
 import Insights from './pages/Insights'
@@ -20,6 +21,7 @@ export default function App() {
         <Route path="work/:slug" element={<WorkDetail />} />
         <Route path="insights" element={<Insights />} />
         <Route path="insights/:slug" element={<InsightPost />} />
+        <Route path="free-audit" element={<FreeAudit />} />
         <Route path="services" element={<Services />} />
         <Route path="about" element={<About />} />
         <Route path="contact" element={<Contact />} />

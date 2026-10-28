@@ -21,7 +21,13 @@ This site was built without inventing any client names, results, credentials, co
 - **Certifications** listed on the About page are the current or still-relevant ones from LinkedIn (`src/content/about.ts`). Expired or off-brief certificates (Google Ads, Webflow 101, 2019 HubSpot certificates, SEMrush social media) are left out. Update the HubSpot certificate when it is renewed; it expires in March 2027.
 - The coatings case study lists paid media accurately as part of that historical work, even though paid media is no longer an offered service.
 
-## 3. Content to supply when available
+## 3. Free landing page audit
+
+- **Offer** (`src/content/audit.ts`, `/free-audit`): a 10 to 15 minute video walkthrough of one page and its enquiry tracking, with prioritised fixes, within 5 working days. For UK B2B businesses with a live page that gets some traffic; limited places each month. All wording comes from that one file, so change it there if the offer changes.
+- **Requests** arrive as a separate Netlify form called `audit`, with the fields url, name, email, company and goal. Your existing Netlify email notification covers all forms, so audit requests are emailed too. After the first deploy, send one test request and delete it afterwards.
+- The privacy notice now mentions audit requests.
+
+## 4. Content to supply when available
 
 | Item | Where | Notes |
 | --- | --- | --- |
@@ -29,14 +35,14 @@ This site was built without inventing any client names, results, credentials, co
 | More photography | `brand/photos/`, `public/images/` | The portrait and headshot come from your decks (originals kept in `brand/photos/`). The decks also contain event photos (TechCrunch Disrupt, an awards night) that could illustrate the About page. |
 | Pricing or engagement models | Not on the site | The FAQs deliberately avoid prices and minimum engagements. Add an answer if you want to set expectations. |
 
-## 4. Brand and logo
+## 5. Brand and logo
 
 - **Logo master:** the site uses `brand/DemandDrive_Studio_Logo_Editable.svg`, the editable Illustrator export supplied on 28 October 2026. Its shapes, text positions and sizes are used unchanged in `src/components/layout/Logo.tsx`. The favicon and social image are generated from the same symbol.
   - The wordmark in that file is live Helvetica text, not outlines. The site pins each word to its Helvetica width, so devices without Helvetica (e.g. Windows, which uses Arial) show the same lock-up. For a pixel-exact master, export a version with the text converted to outlines, then replace `Logo.tsx` and run `npm run icons`.
 - **Name, domain and trademark checks**, as recommended in the guidelines, are outstanding.
 - **Reverse logo:** the footer uses a white logo on navy with the electric-blue arrow, as the guidelines allow ("use a blue accent only where contrast remains strong"). Confirm this is acceptable.
 
-## 5. Copy review
+## 6. Copy review
 
 All copy is in UK English and in the first person, as James. Figures and quotes appear only where they come from James's own materials, and are labelled with where they came from. The owner should still review:
 
@@ -50,7 +56,7 @@ All copy is in UK English and in the first person, as James. Figures and quotes 
 - **FAQ answers** in `src/content/faqs.ts`, especially "Can you help with a single project?" (it says yes) and "What happens after the first conversation?" (it says you follow up by email with a view and, if there is a fit, a proposed scope, timescale and cost).
 - Meta titles and descriptions in `src/routes.ts`.
 
-## 6. Not implemented (by design)
+## 7. Not implemented (by design)
 
 | Item | Reason |
 | --- | --- |
@@ -60,7 +66,9 @@ All copy is in UK English and in the first person, as James. Figures and quotes 
 | Spam protection beyond honeypot | Netlify's honeypot field and built-in spam filtering are enabled. Add reCAPTCHA (Netlify supports it) only if spam becomes a problem, and mention it in the privacy notice. |
 | Blog / resources | Not in the initial scope. The route and content structure supports adding a `resources` section; see README → Extending the site. |
 
-## 7. Verified during build
+## 8. Verified during build
+
+- Structured data: every page outputs one JSON-LD graph (`src/lib/schema.ts`) with the business (ProfessionalService), website, founder (Person) and page, plus breadcrumbs on inner pages, Service entries on /services, an Offer for the free audit, Article for Insights posts, CreativeWork for case studies, and FAQPage on the home and Services pages. All of it parses as valid JSON at build time.
 
 - `npm run build` completes without errors. `npm run typecheck` and `npm run lint` are clean.
 - All routes (including /work and each project page) and the 404 page prerender with unique titles, descriptions, canonical URLs and Open Graph tags. `sitemap.xml` and `robots.txt` are generated.

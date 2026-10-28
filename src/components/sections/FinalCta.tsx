@@ -1,4 +1,5 @@
 import { site } from '../../config/site'
+import { Link } from 'react-router'
 import { ButtonLink } from '../ui/Button'
 import { Container } from '../ui/Container'
 
@@ -22,6 +23,13 @@ export function FinalCta({
               {title}
             </h2>
             <p className="mt-4 max-w-xl text-lg leading-relaxed text-on-navy-muted">{text}</p>
+            <p className="mt-4 text-on-navy-muted">
+              Not ready to talk?{' '}
+              <Link to="/free-audit" className="font-semibold text-white underline underline-offset-4 hover:text-on-navy-muted">
+                Get a free landing page audit
+              </Link>
+              .
+            </p>
             <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-center">
               <ButtonLink to="/contact" arrow>
                 Discuss a project

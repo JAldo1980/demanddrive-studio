@@ -11,7 +11,7 @@ export type EnquiryErrors = Partial<Record<keyof EnquiryValues, string>>
 export const FORM_NAME = 'enquiry'
 export const HONEYPOT_FIELD = 'bot-field'
 
-const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+export const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
 
 export function validateEnquiry(values: EnquiryValues): EnquiryErrors {
   const errors: EnquiryErrors = {}
@@ -28,29 +28,30 @@ export function validateEnquiry(values: EnquiryValues): EnquiryErrors {
 }
 
 /**
- * Submit the enquiry.
- *
- * By default this posts to Netlify Forms (the prerendered contact page contains
- * a matching form that Netlify detects at deploy time). Set VITE_FORM_ENDPOINT
- * to post to a different public form endpoint instead. No secrets are needed or
- * used here.
+ * Post a form to Netlify Forms (the prerendered page contains a matching form
+ * that Netlify detects at deploy time). Set VITE_FORM_ENDPOINT to post to a
+ * different public form endpoint instead. No secrets are needed or used here.
  */
-export async function submitEnquiry(values: EnquiryValues, honeypot: string) {
+export async function submitForm(formName: string, values: Record<string, string>, honeypot: string) {
   const endpoint = import.meta.env.VITE_FORM_ENDPOINT
 
   if (import.meta.env.DEV && !endpoint) {
     // There is no form backend on the Vite dev server. Simulate success so the
     // form states can be tested locally.
-    console.info('[dev] Enquiry not sent; no form backend in development.', values)
+    console.info(`[dev] "${formName}" not sent; no form backend in development.`, values)
     await new Promise((resolve) => setTimeout(resolve, 600))
     return
   }
 
-  const body = new URLSearchParams({ 'form-name': FORM_NAME, [HONEYPOT_FIELD]: honeypot, ...values })
+  const body = new URLSearchParams({ 'form-name': formName, [HONEYPOT_FIELD]: honeypot, ...values })
   const response = await fetch(endpoint || '/', {
     method: 'POST',
     headers: { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' },
     body: body.toString(),
   })
-  if (!response.ok) throw new Error(`Enquiry submission failed (${response.status})`)
+  if (!response.ok) throw new Error(`Form submission failed (${response.status})`)
+}
+
+export function submitEnquiry(values: EnquiryValues, honeypot: string) {
+  return submitForm(FORM_NAME, values, honeypot)
 }

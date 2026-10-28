@@ -1,4 +1,5 @@
 import { AboutTeaser } from '../components/sections/AboutTeaser'
+import { AuditPromo } from '../components/sections/AuditPromo'
 import { Approach } from '../components/sections/Approach'
 import { Challenges } from '../components/sections/Challenges'
 import { Faq } from '../components/sections/Faq'
@@ -16,6 +17,7 @@ export default function Home() {
       <TrackRecord />
       <WorkShowcase />
       <Testimonials />
+      <AuditPromo />
       <Challenges />
       <GrowthSystem />
       <Approach />

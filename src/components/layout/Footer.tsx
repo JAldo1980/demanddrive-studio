@@ -34,6 +34,7 @@ export function Footer() {
                     <Link to={item.to} className={linkClass}>{item.label}</Link>
                   </li>
                 ))}
+                <li><Link to="/free-audit" className={linkClass}>Free landing page audit</Link></li>
               </ul>
             </div>
 

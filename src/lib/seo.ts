@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { site } from '../config/site'
-import { faqsByPath } from '../content/faqs'
 import type { PageMeta } from '../routes'
+import { structuredData } from './schema'
 
 const OG_IMAGE = '/og-image.png'
 
@@ -46,49 +46,12 @@ export function renderHead(meta: PageMeta) {
       .join(' ')
     return `<${tag} data-seo="${key}" ${attributes} />`
   })
-  const jsonLd =
-    meta.path === '/'
-      ? `<script type="application/ld+json">${JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'ProfessionalService',
-          name: site.name,
-          description: site.positioning,
-          url: site.url,
-          areaServed: 'GB',
-          founder: { '@type': 'Person', name: site.founder.name, jobTitle: site.founder.role },
-          ...(site.contact.location ? { address: { '@type': 'PostalAddress', addressLocality: site.contact.location.split(',')[0], addressCountry: 'GB' } } : {}),
-          ...(site.contact.email ? { email: site.contact.email } : {}),
-          ...(site.contact.phone ? { telephone: site.contact.phone } : {}),
-          ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),
-        })}</script>`
-      : ''
-  const articleLd = meta.article
-    ? `<meta property="article:published_time" content="${meta.article.published}" />
-    <script type="application/ld+json">${JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: meta.title.replace(/ \| DemandDrive Studio$/, ''),
-      description: meta.description,
-      datePublished: meta.article.published,
-      author: { '@type': 'Person', name: site.founder.name, url: `${site.url}/about` },
-      publisher: { '@type': 'Organization', name: site.name, url: site.url },
-      mainEntityOfPage: canonicalUrl(meta),
-      ...(meta.article.tags?.length ? { keywords: meta.article.tags.join(', ') } : {}),
-    })}</script>`
+  const published = meta.article
+    ? `<meta property="article:published_time" content="${meta.article.published}" />\n    <meta name="author" content="${escapeHtml(site.founder.name)}" />`
     : ''
-  const pageFaqs = faqsByPath[meta.path]
-  const faqLd = pageFaqs
-      ? `<script type="application/ld+json">${JSON.stringify({
-          '@context': 'https://schema.org',
-          '@type': 'FAQPage',
-          mainEntity: pageFaqs.map((f) => ({
-            '@type': 'Question',
-            name: f.question,
-            acceptedAnswer: { '@type': 'Answer', text: f.answer },
-          })),
-        })}</script>`
-      : ''
-  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, jsonLd, faqLd, articleLd].filter(Boolean).join('\n    ')
+  // JSON-LD: escape "<" so content can never close the script element early.
+  const jsonLd = `<script type="application/ld+json">${JSON.stringify(structuredData(meta)).replace(/</g, '\\u003c')}</script>`
+  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, published, jsonLd].filter(Boolean).join('\n    ')
 }
 
 /** Client-side: keep the <head> in sync after in-app navigation. */

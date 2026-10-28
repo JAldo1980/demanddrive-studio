@@ -3,6 +3,7 @@ import { serviceFaqs } from '../content/faqs'
 import { services } from '../content/services'
 import { publishedProjects } from '../content/work'
 import { Approach } from '../components/sections/Approach'
+import { AuditPromo } from '../components/sections/AuditPromo'
 import { Faq } from '../components/sections/Faq'
 import { GrowthSystem } from '../components/sections/GrowthSystem'
 import { FinalCta } from '../components/sections/FinalCta'
@@ -91,6 +92,7 @@ export default function Services() {
       </section>
 
       <Approach />
+      <AuditPromo />
       <Faq
         items={serviceFaqs}
         title="Questions about my services"

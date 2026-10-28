@@ -54,6 +54,13 @@ export const pages: PageMeta[] = [
     article: { published: p.date, tags: p.tags },
   })),
   {
+    path: '/free-audit',
+    title: 'Free landing page audit | DemandDrive Studio',
+    description:
+      'Get a free video audit of one landing page and its enquiry tracking, with prioritised fixes, within 5 working days. For UK B2B businesses.',
+    priority: 0.8,
+  },
+  {
     path: '/services',
     title: 'Services | DemandDrive Studio',
     description:

@@ -53,6 +53,11 @@ export default function Privacy() {
                 When you send an enquiry through our <Link to="/contact" className="text-electric underline">contact form</Link>,
                 we collect the details you provide: your name, work email address, company, area of interest and message.
               </p>
+              <p>
+                When you request a <Link to="/free-audit" className="text-electric underline">free landing page audit</Link>,
+                we collect your name, work email address, company, the web address of the page to review and, if you
+                provide it, what the page is meant to achieve.
+              </p>
               <p>We do not currently use analytics, advertising or tracking cookies on this website.</p>
             </div>
 
@@ -60,6 +65,7 @@ export default function Privacy() {
               <h2>How we use it</h2>
               <ul>
                 <li>To reply to your enquiry and arrange a conversation if you have asked for one.</li>
+                <li>To carry out and send you a free audit you have requested.</li>
                 <li>To keep a record of our correspondence with you.</li>
               </ul>
               <p>

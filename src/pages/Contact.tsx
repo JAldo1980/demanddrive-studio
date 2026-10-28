@@ -1,4 +1,6 @@
+import { Link } from 'react-router'
 import { EnquiryForm } from '../components/EnquiryForm'
+import { ArrowRight } from '../components/ui/Button'
 import { Faq } from '../components/sections/Faq'
 import { PageHero } from '../components/sections/PageHero'
 import { Container } from '../components/ui/Container'
@@ -27,6 +29,15 @@ export default function Contact() {
           </div>
 
           <aside className="space-y-8 lg:col-span-5" aria-label="What happens next and contact details">
+            <div className="rounded-lg border-2 border-electric/30 p-6 sm:p-8">
+              <p className="text-sm font-semibold text-electric">Free landing page audit</p>
+              <p className="mt-1 text-lg font-semibold text-navy">Want a quick, no-obligation look at one page first?</p>
+              <Link to="/free-audit" className="mt-3 inline-flex items-center gap-2 font-semibold text-electric underline-offset-2 hover:underline">
+                Request a free audit
+                <ArrowRight className="size-4" />
+              </Link>
+            </div>
+
             <div className="rounded-lg bg-cool p-6 sm:p-8">
               <h2 className="text-xl font-semibold">What happens next</h2>
               <ol className="mt-6 space-y-6">
