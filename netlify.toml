@@ -4,6 +4,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+  # Live address for canonical, Open Graph, sitemap and robots URLs.
+  # Change this when the site moves to a custom domain.
+  VITE_SITE_URL = "https://demand-drive-studio.netlify.app"
 
 # Long-lived caching for fingerprinted build assets.
 [[headers]]
