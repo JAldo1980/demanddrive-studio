@@ -7,7 +7,7 @@ import { site } from '../config/site'
 
 const nextSteps = [
   { title: 'I read your enquiry', text: 'You deal with me directly. No account handlers and no sales script.' },
-  { title: 'I reply by email', text: 'If there looks to be a fit, I suggest a time for an introductory call. If not, I will say so.' },
+  { title: 'I’ll reply by email', text: 'If it looks like I can help, I’ll suggest a time for a relaxed introductory chat. If I’m not the right fit, I’ll tell you honestly and, where I can, point you in the right direction.' },
   { title: 'An introductory call', text: 'A conversation about your objectives, current activity and constraints. No obligation, no hard sell.' },
 ]
 
