@@ -19,7 +19,9 @@ function page(url, meta) {
 }
 
 for (const meta of pages) {
-  const file = meta.path === '/' ? join(dist, 'index.html') : join(dist, meta.path.slice(1), 'index.html')
+  // /services -> services.html, which static hosts serve at /services without
+  // a redirect (a services/index.html folder makes Netlify redirect to /services/).
+  const file = meta.path === '/' ? join(dist, 'index.html') : join(dist, `${meta.path.slice(1)}.html`)
   await mkdir(dirname(file), { recursive: true })
   await writeFile(file, page(meta.path, meta))
   console.log(`  prerendered ${meta.path}`)

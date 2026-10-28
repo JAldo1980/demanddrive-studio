@@ -58,10 +58,10 @@ The build writes a static site to `dist/`:
 ```
 dist/
   index.html            /
-  services/index.html   /services
-  about/index.html      /about
-  contact/index.html    /contact
-  privacy/index.html    /privacy   (noindex while the notice is a draft)
+  services.html         /services
+  about.html            /about
+  contact.html          /contact
+  privacy.html          /privacy   (noindex while the notice is a draft)
   404.html
   sitemap.xml
   robots.txt
@@ -76,7 +76,7 @@ dist/
 
 1. Push the project to a Git repository and import it in Netlify, or run `npx netlify deploy --prod` from the project folder.
 2. In **Site configuration → Environment variables**, set `VITE_SITE_URL` to the live domain.
-3. Deploy. Netlify serves `contact/index.html` for `/contact`, and `404.html` for unknown URLs.
+3. Deploy. Netlify serves `contact.html` at `/contact` without a redirect, and `404.html` for unknown URLs.
 4. **Enquiry form:** Netlify detects the `enquiry` form in the prerendered contact page during deploy. In **Forms**, enable form detection if prompted, then add an email notification under **Forms → enquiry → Notifications** so new enquiries reach the right inbox. Submit a test enquiry after the first deploy.
 
 ### Other static hosts
@@ -84,7 +84,7 @@ dist/
 Any static host works (Cloudflare Pages, Vercel, S3/CloudFront, Apache or Nginx):
 
 - Build command `npm run build`, output directory `dist`.
-- The host must serve `/<page>/index.html` for `/<page>`, and `404.html` for unknown paths. Most hosts do this by default.
+- The host must serve `<page>.html` at `/<page>` (often called "clean URLs"), and `404.html` for unknown paths. Most static hosts do this by default or with one setting.
 - Netlify Forms will not work elsewhere. Set `VITE_FORM_ENDPOINT` to another form service that accepts a URL-encoded POST (for example Formspree or Basin), and check its response handling in `src/lib/enquiry.ts`.
 - Recreate the cache and security headers from `netlify.toml` in the host's own configuration.
 

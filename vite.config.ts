@@ -6,7 +6,7 @@ import { defineConfig, type Plugin } from 'vite'
 
 /**
  * Make `vite preview` serve prerendered pages the way a static host does:
- * /services -> dist/services/index.html, unknown paths -> dist/404.html.
+ * /services -> dist/services.html, unknown paths -> dist/404.html.
  * Without this, preview falls back to the homepage HTML for every route.
  */
 function staticHostPreview(): Plugin {
@@ -17,9 +17,9 @@ function staticHostPreview(): Plugin {
       server.middlewares.use((req, res, next) => {
         const path = (req.url ?? '/').split(/[?#]/)[0]
         if (path.includes('.') && !path.endsWith('.html')) return next()
-        const page = join(outDir, path, 'index.html')
-        if (existsSync(page)) {
-          req.url = join(path, 'index.html')
+        const file = path === '/' ? '/index.html' : `${path.replace(/\/$/, '')}.html`
+        if (path.endsWith('.html') || existsSync(join(outDir, file))) {
+          if (!path.endsWith('.html')) req.url = file
         } else {
           res.statusCode = 404
           req.url = '/404.html'
