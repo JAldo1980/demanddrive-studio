@@ -55,6 +55,8 @@ export function renderHead(meta: PageMeta) {
           description: site.positioning,
           url: site.url,
           areaServed: 'GB',
+          founder: { '@type': 'Person', name: site.founder.name, jobTitle: site.founder.role },
+          ...(site.contact.location ? { address: { '@type': 'PostalAddress', addressLocality: site.contact.location.split(',')[0], addressCountry: 'GB' } } : {}),
           ...(site.contact.email ? { email: site.contact.email } : {}),
           ...(site.contact.phone ? { telephone: site.contact.phone } : {}),
           ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),

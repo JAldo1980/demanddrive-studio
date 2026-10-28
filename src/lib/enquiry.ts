@@ -22,8 +22,8 @@ export function validateEnquiry(values: EnquiryValues): EnquiryErrors {
   if (!values.company.trim()) errors.company = 'Enter your company name.'
   if (values.message.trim().length < 20)
     errors.message = values.message.trim()
-      ? 'Tell us a little more: at least 20 characters.'
-      : 'Tell us briefly what you would like to discuss.'
+      ? 'Tell me a little more: at least 20 characters.'
+      : 'Tell me briefly what you would like to discuss.'
   return errors
 }
 

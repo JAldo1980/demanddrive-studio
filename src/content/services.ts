@@ -16,7 +16,7 @@ export const services: Service[] = [
     title: 'B2B growth strategy',
     summary: 'Decide where to compete, who to reach and which activity deserves budget.',
     purpose:
-      'Gives every channel a clear brief. We review your markets, buyers, sales process and current marketing, then set priorities that link marketing activity to pipeline and commercial targets.',
+      'Gives every channel a clear brief. I review your markets, buyers, sales process and current marketing, then set priorities that link marketing activity to pipeline and commercial targets.',
     includes: [
       'Market, audience and competitor review',
       'Positioning and messaging priorities',
@@ -30,7 +30,7 @@ export const services: Service[] = [
     title: 'SEO and organic visibility',
     summary: 'Be found by buyers who are researching the problems you solve.',
     purpose:
-      'Technical and industrial buyers research thoroughly before they make contact. We improve how your site is structured, written and maintained so it appears for searches that signal genuine commercial intent, not just traffic for its own sake.',
+      'Technical and industrial buyers research thoroughly before they make contact. I improve how your site is structured, written and maintained so it appears for searches that signal genuine commercial intent, not just traffic for its own sake.',
     includes: [
       'Technical SEO audit and fixes',
       'Keyword and search-intent research',
@@ -44,7 +44,7 @@ export const services: Service[] = [
     title: 'Landing pages and conversion optimisation',
     summary: 'Make it easier for interested prospects to take the next step.',
     purpose:
-      'Traffic is only useful when visitors understand your offer and can act on it. We design and build fast, focused landing pages, and improve existing pages using evidence from analytics and user behaviour.',
+      'Traffic is only useful when visitors understand your offer and can act on it. I design and build fast, focused landing pages, and improve existing pages using evidence from analytics and user behaviour.',
     includes: [
       'Landing page design and development',
       'Conversion reviews of existing pages',
@@ -58,7 +58,7 @@ export const services: Service[] = [
     title: 'Measurement and performance insight',
     summary: 'Know what is working, and what to change next.',
     purpose:
-      'Decisions are only as good as the data behind them. We set up tracking you can trust, connect marketing data to enquiries and pipeline where your systems allow, and report in plain English with clear recommendations.',
+      'Decisions are only as good as the data behind them. I set up tracking you can trust, connect marketing data to enquiries and pipeline where your systems allow, and report in plain English with clear recommendations.',
     includes: [
       'Analytics and conversion tracking set-up',
       'CRM and enquiry attribution',

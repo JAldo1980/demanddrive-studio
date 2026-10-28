@@ -11,7 +11,7 @@ export default function NotFound() {
       <div className="mt-10 flex flex-col gap-3 sm:flex-row">
         <ButtonLink to="/">Go to the homepage</ButtonLink>
         <ButtonLink to="/contact" variant="secondary">
-          Contact us
+          Get in touch
         </ButtonLink>
       </div>
     </PageHero>

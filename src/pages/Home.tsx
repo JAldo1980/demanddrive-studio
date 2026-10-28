@@ -6,12 +6,14 @@ import { FinalCta } from '../components/sections/FinalCta'
 import { GrowthSystem } from '../components/sections/GrowthSystem'
 import { Hero } from '../components/sections/Hero'
 import { Testimonials } from '../components/sections/Testimonials'
+import { TrackRecord } from '../components/sections/TrackRecord'
 import { WorkShowcase } from '../components/sections/WorkShowcase'
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <TrackRecord />
       <WorkShowcase />
       <Testimonials />
       <Challenges />

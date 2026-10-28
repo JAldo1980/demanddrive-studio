@@ -30,7 +30,7 @@ export function GrowthSystem({ headingId = 'system-title' }: { headingId?: strin
           id={headingId}
           eyebrow="How the services connect"
           title="A joined-up growth system"
-          intro="Buyers do not experience your marketing channel by channel. A search, a service page, an enquiry form and a follow-up call form one impression, so we plan them as one system."
+          intro="Buyers do not experience your marketing channel by channel. A search, a service page, an enquiry form and a follow-up call form one impression, so I plan them as one system."
         />
       </div>
 
@@ -61,7 +61,7 @@ export function GrowthSystem({ headingId = 'system-title' }: { headingId?: strin
           <span className="absolute -top-1 -left-[7px] h-0 w-0 border-x-[6px] border-b-[8px] border-x-transparent border-b-electric/60" />
         </div>
         <p className="mt-4 text-center text-sm font-medium text-muted lg:-mt-3">
-          <span className="bg-white px-3">What we learn feeds the next round of priorities</span>
+          <span className="bg-white px-3">What I learn feeds the next round of priorities</span>
         </p>
 
         <Link

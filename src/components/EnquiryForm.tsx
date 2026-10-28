@@ -71,11 +71,11 @@ export function EnquiryForm() {
           Thank you, {values.name.trim().split(' ')[0]}. Your enquiry has been sent.
         </h2>
         <p className="mt-3 max-w-xl leading-relaxed">
-          We will read it properly and reply to <strong className="font-semibold text-navy">{values.email}</strong> to
+          I will read it properly and reply to <strong className="font-semibold text-navy">{values.email}</strong> to
           suggest a time for a short introductory call, or to ask a couple of questions first if that would be more useful.
         </p>
         <Link to="/services" className={buttonClass('secondary', 'mt-8')}>
-          Read about our services
+          Read about my services
         </Link>
       </div>
     )
@@ -219,7 +219,7 @@ export function EnquiryForm() {
           {status !== 'submitting' && <ArrowRight />}
         </button>
         <p className="text-sm text-muted">
-          We use your details only to respond to your enquiry. See our{' '}
+          I use your details only to respond to your enquiry. See the{' '}
           <Link to="/privacy" className="font-medium text-electric underline underline-offset-2">
             privacy notice
           </Link>

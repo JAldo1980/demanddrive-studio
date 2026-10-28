@@ -12,7 +12,7 @@ type FaqProps = {
 export function Faq({
   items = generalFaqs,
   title = 'Before you get in touch',
-  intro = 'Straight answers to the questions we are asked most often.',
+  intro = 'Straight answers to the questions I am asked most often.',
   tone = 'white',
 }: FaqProps) {
   return (

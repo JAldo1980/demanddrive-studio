@@ -93,12 +93,12 @@ export default function Services() {
       <Approach />
       <Faq
         items={serviceFaqs}
-        title="Questions about our services"
+        title="Questions about my services"
         intro="How the services fit together, where to start and what to expect."
       />
       <FinalCta
         title="Not sure which service you need?"
-        text="Most engagements start with a conversation about your objectives and current activity. We will recommend where to focus, even if that means starting small."
+        text="Most engagements start with a conversation about your objectives and current activity. I will recommend where to focus, even if that means starting small."
       />
     </>
   )

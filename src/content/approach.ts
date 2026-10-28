@@ -4,7 +4,7 @@ export const approach: Step[] = [
   {
     title: 'Understand',
     description:
-      'We learn how your business sells: your markets, buyers, sales cycle, current marketing and the numbers that matter to you.',
+      'I learn how your business sells: your markets, buyers, sales cycle, current marketing and the numbers that matter to you.',
     output: 'A clear picture of your goals, buyers and current activity',
   },
   {
@@ -16,19 +16,19 @@ export const approach: Step[] = [
   {
     title: 'Build',
     description:
-      'We put the work in place: content, SEO improvements, landing pages and tracking, delivered hands-on rather than handed off.',
+      'I put the work in place: content, SEO improvements, landing pages and tracking, delivered hands-on rather than handed off.',
     output: 'The pages, content and tracking, delivered',
   },
   {
     title: 'Measure',
     description:
-      'We track performance against the measures agreed at the start, looking at the quality of enquiries as well as volume.',
+      'I track performance against the measures agreed at the start, looking at the quality of enquiries as well as volume.',
     output: 'Reporting against the measures we agreed',
   },
   {
     title: 'Improve',
     description:
-      'We review results with you, explain what we have learned and adjust the plan. Then the cycle continues.',
+      'I review results with you, explain what I have learned and adjust the plan. Then the cycle continues.',
     output: 'Recommendations and the next set of priorities',
   },
 ]

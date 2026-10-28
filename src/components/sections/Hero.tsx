@@ -1,4 +1,5 @@
 import { Link } from 'react-router'
+import { site } from '../../config/site'
 import { ButtonLink } from '../ui/Button'
 import { Container } from '../ui/Container'
 import { Eyebrow } from '../ui/SectionHeading'
@@ -26,8 +27,8 @@ export function Hero() {
             Generate better B2B demand. <span className="text-electric">Convert more of it.</span>
           </h1>
           <p className="mt-6 max-w-xl text-lg leading-relaxed text-muted">
-            Growth strategy, SEO, conversion-focused landing pages and measurement, planned as one system and built
-            hands-on around your commercial goals.
+            I help UK B2B businesses turn marketing into enquiries, pipeline and revenue: growth strategy, SEO,
+            conversion-focused landing pages and measurement, planned as one system and built hands-on.
           </p>
           <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:items-center">
             <ButtonLink to="/contact" arrow>
@@ -37,6 +38,19 @@ export function Hero() {
               See the work
             </ButtonLink>
           </div>
+          <Link to="/about" className="group mt-10 flex items-center gap-4">
+            <img
+              src={site.founder.headshot}
+              alt=""
+              width={56}
+              height={55}
+              className="size-14 rounded-full bg-cool object-cover"
+            />
+            <span className="text-sm leading-snug">
+              <span className="block font-semibold text-navy group-hover:text-electric">{site.founder.name}</span>
+              <span className="text-muted">Founder · 13+ years in B2B marketing</span>
+            </span>
+          </Link>
         </div>
 
         <figure className="lg:col-span-6 xl:col-span-7">

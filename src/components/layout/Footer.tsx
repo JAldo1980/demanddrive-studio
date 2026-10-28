@@ -58,13 +58,11 @@ export function Footer() {
                     <Placeholder dark>email address</Placeholder>
                   )}
                 </li>
-                <li>
-                  {phone ? (
+                {phone && (
+                  <li>
                     <a href={`tel:${phone.replace(/\s/g, '')}`} className={linkClass}>{phone}</a>
-                  ) : (
-                    <Placeholder dark>phone number</Placeholder>
-                  )}
-                </li>
+                  </li>
+                )}
                 <li>
                   {location ? <span className="text-on-navy-muted">{location}</span> : <Placeholder dark>location</Placeholder>}
                 </li>

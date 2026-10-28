@@ -6,8 +6,8 @@ import { Placeholder } from '../components/ui/Placeholder'
 import { site } from '../config/site'
 
 const nextSteps = [
-  { title: 'We read your enquiry', text: 'Every enquiry is read by someone who can answer it, not routed to a sales script.' },
-  { title: 'We reply by email', text: 'If there looks to be a fit, we suggest a time for an introductory call. If not, we will say so.' },
+  { title: 'I read your enquiry', text: 'You deal with me directly. No account handlers and no sales script.' },
+  { title: 'I reply by email', text: 'If there looks to be a fit, I suggest a time for an introductory call. If not, I will say so.' },
   { title: 'An introductory call', text: 'A conversation about your objectives, current activity and constraints. No obligation, no hard sell.' },
 ]
 
@@ -18,7 +18,7 @@ export default function Contact() {
       <PageHero
         eyebrow="Contact"
         title="Discuss your goals"
-        intro="Tell us a little about your business and what you would like to achieve. The more context you share, the more useful our first conversation will be."
+        intro="Tell me a little about your business and what you would like to achieve. The more context you share, the more useful our first conversation will be."
       />
       <section aria-label="Enquiry form and contact details" className="bg-white py-14 sm:py-16 lg:py-20">
         <Container className="grid gap-14 lg:grid-cols-12 lg:gap-16">
@@ -48,7 +48,20 @@ export default function Contact() {
             </div>
 
             <div className="rounded-lg border border-line p-6 sm:p-8">
-              <h2 className="text-xl font-semibold">Contact details</h2>
+              <div className="flex items-center gap-4">
+                <img
+                  src={site.founder.headshot}
+                  alt=""
+                  width={64}
+                  height={63}
+                  className="size-16 rounded-full bg-cool object-cover"
+                />
+                <div>
+                  <h2 className="text-xl font-semibold">Contact details</h2>
+                  <p className="text-sm text-muted">You will be speaking to me, {site.founder.name.split(' ')[0]}.</p>
+                </div>
+              </div>
+              <div className="mt-5 border-t border-line" />
               <dl className="mt-5 space-y-4">
                 <div>
                   <dt className="text-sm font-medium text-muted">Email</dt>
@@ -60,16 +73,24 @@ export default function Contact() {
                     )}
                   </dd>
                 </div>
-                <div>
-                  <dt className="text-sm font-medium text-muted">Phone</dt>
-                  <dd className="mt-1">
-                    {phone ? (
+                {phone && (
+                  <div>
+                    <dt className="text-sm font-medium text-muted">Phone</dt>
+                    <dd className="mt-1">
                       <a href={`tel:${phone.replace(/\s/g, '')}`} className="font-medium text-electric underline-offset-2 hover:underline">{phone}</a>
-                    ) : (
-                      <Placeholder>confirmed phone number</Placeholder>
-                    )}
-                  </dd>
-                </div>
+                    </dd>
+                  </div>
+                )}
+                {site.social.map((s) => (
+                  <div key={s.href}>
+                    <dt className="text-sm font-medium text-muted">{s.label}</dt>
+                    <dd className="mt-1">
+                      <a href={s.href} target="_blank" rel="me noopener" className="font-medium text-electric underline-offset-2 hover:underline">
+                        Connect with James<span className="sr-only"> on {s.label} (opens in a new tab)</span>
+                      </a>
+                    </dd>
+                  </div>
+                ))}
                 <div>
                   <dt className="text-sm font-medium text-muted">Location</dt>
                   <dd className="mt-1">{location ?? <Placeholder>location or service area</Placeholder>}</dd>

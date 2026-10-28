@@ -6,8 +6,15 @@ import { Eyebrow } from '../components/ui/SectionHeading'
 import { ProjectPreview } from '../components/visuals/ProjectPreview'
 import { KindBadge } from '../components/work/ProjectCard'
 import { services } from '../content/services'
-import { getProject, publishedProjects } from '../content/work'
+import { getProject, publishedProjects, type Project } from '../content/work'
 import NotFound from './NotFound'
+
+const provenance: Record<Project['kind'], string> = {
+  experience:
+    'Delivered in a previous role, before DemandDrive Studio. The client is anonymised and the figures come from the reporting at the time.',
+  client: 'Client work, shown with the client’s agreement.',
+  concept: 'Concept project designed by DemandDrive Studio. Not a client engagement, and no results are claimed.',
+}
 
 export default function WorkDetail() {
   const { slug } = useParams()
@@ -19,11 +26,10 @@ export default function WorkDetail() {
   const next = publishedProjects[(index + 1) % publishedProjects.length]
   const related = services.filter((s) => project.services.includes(s.id))
 
-  const sections = [
-    { title: 'What we would deliver', items: project.deliverables, show: concept },
-    { title: 'What we delivered', items: project.deliverables, show: !concept },
-    { title: concept ? 'How we would measure success' : 'How success was measured', items: project.measures, show: true },
-  ].filter((s) => s.show)
+  const lists = [
+    { title: concept ? 'What I would deliver' : 'What I delivered', items: project.deliverables },
+    { title: concept ? 'How I would measure success' : 'How success was measured', items: project.measures ?? [] },
+  ].filter((l) => l.items.length > 0)
 
   return (
     <>
@@ -32,10 +38,14 @@ export default function WorkDetail() {
           <nav aria-label="Breadcrumb" className="text-sm text-muted">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
-                <Link to="/work" className="hover:text-electric">Work</Link>
+                <Link to="/work" className="hover:text-electric">
+                  Work
+                </Link>
               </li>
               <li aria-hidden="true">/</li>
-              <li aria-current="page" className="text-navy">{project.sector}</li>
+              <li aria-current="page" className="text-navy">
+                {project.sector}
+              </li>
             </ol>
           </nav>
           <div className="mt-8 max-w-4xl">
@@ -47,6 +57,17 @@ export default function WorkDetail() {
               {project.title}
             </h1>
             <p className="mt-6 text-lg leading-relaxed text-muted sm:text-xl">{project.summary}</p>
+            {project.stats && (
+              <dl className="mt-10 grid gap-6 border-t border-line pt-8 sm:grid-cols-3">
+                {project.stats.map((st) => (
+                  <div key={st.label}>
+                    <dt className="sr-only">{st.label}</dt>
+                    <dd className="text-4xl font-bold tracking-tight text-navy">{st.value}</dd>
+                    <dd className="mt-1 text-muted">{st.label}</dd>
+                  </div>
+                ))}
+              </dl>
+            )}
           </div>
         </Container>
       </section>
@@ -54,11 +75,21 @@ export default function WorkDetail() {
       <section aria-label="Project preview" className="bg-cool py-10 sm:py-14">
         <Container>
           <ProjectPreview project={project} className="mx-auto max-w-5xl" />
-          {concept && (
-            <p className="mx-auto mt-4 max-w-5xl text-sm text-muted">
-              Concept design by DemandDrive Studio. Not a client project.
-            </p>
-          )}
+          <div className="mx-auto mt-4 flex max-w-5xl flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <p className="text-sm text-muted">{provenance[project.kind]}</p>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex shrink-0 items-center gap-2 font-semibold text-electric underline-offset-2 hover:underline"
+              >
+                Visit the live site
+                <span className="sr-only"> (opens in a new tab)</span>
+                <ArrowRight className="size-4" />
+              </a>
+            )}
+          </div>
         </Container>
       </section>
 
@@ -66,12 +97,12 @@ export default function WorkDetail() {
         <Container className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-12 lg:col-span-7">
             <div>
-              <Eyebrow>The challenge</Eyebrow>
-              <h2 className="sr-only">The challenge</h2>
+              <Eyebrow>{project.kind === 'client' ? 'The brief' : 'The challenge'}</Eyebrow>
+              <h2 className="sr-only">{project.kind === 'client' ? 'The brief' : 'The challenge'}</h2>
               <p className="text-lg leading-relaxed">{project.problem}</p>
             </div>
             <div>
-              <h2 className="text-2xl font-bold tracking-tight">{concept ? 'Our approach' : 'What we did'}</h2>
+              <h2 className="text-2xl font-bold tracking-tight">{concept ? 'My approach' : 'What I did'}</h2>
               <ol className="mt-6 space-y-4">
                 {project.approach.map((a, i) => (
                   <li key={a} className="flex gap-4">
@@ -84,19 +115,19 @@ export default function WorkDetail() {
               </ol>
             </div>
             {project.outcome && (
-              <div>
-                <h2 className="text-2xl font-bold tracking-tight">Outcome</h2>
-                <p className="mt-4 text-lg leading-relaxed">{project.outcome}</p>
+              <div className="rounded-xl bg-navy p-6 text-white sm:p-8 on-dark">
+                <h2 className="text-2xl font-bold tracking-tight text-white">The result</h2>
+                <p className="mt-4 text-lg leading-relaxed text-on-navy-muted">{project.outcome}</p>
               </div>
             )}
           </div>
 
           <aside className="space-y-6 lg:col-span-5">
-            {sections.map((s) => (
-              <div key={s.title} className="rounded-xl border border-line p-6 sm:p-7">
-                <h2 className="text-lg font-semibold">{s.title}</h2>
+            {lists.map((l) => (
+              <div key={l.title} className="rounded-xl border border-line p-6 sm:p-7">
+                <h2 className="text-lg font-semibold">{l.title}</h2>
                 <ul className="mt-4 space-y-2.5">
-                  {s.items.map((item) => (
+                  {l.items.map((item) => (
                     <li key={item} className="flex gap-3 leading-relaxed text-muted">
                       <span aria-hidden="true" className="mt-2.5 size-1.5 shrink-0 rounded-full bg-electric" />
                       {item}
@@ -106,7 +137,7 @@ export default function WorkDetail() {
               </div>
             ))}
             <div className="rounded-xl bg-cool p-6 sm:p-7">
-              <h2 className="text-lg font-semibold">Services involved</h2>
+              <h2 className="text-lg font-semibold">Related services</h2>
               <ul className="mt-4 space-y-2">
                 {related.map((s) => (
                   <li key={s.id}>

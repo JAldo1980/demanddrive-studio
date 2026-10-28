@@ -8,9 +8,9 @@ export function Approach() {
       <SectionHeading
         dark
         id="approach-title"
-        eyebrow="How we work"
+        eyebrow="How I work"
         title="From understanding to improvement"
-        intro="Every engagement follows the same cycle, whether we are fixing one landing page or shaping your wider growth plan. You always know what stage we are at, and what you will get from it."
+        intro="Every engagement follows the same cycle, whether I am fixing one landing page or shaping your wider growth plan. You always know what stage we are at, and what you will get from it."
       />
 
       <ol className="relative mt-14 grid gap-0 lg:grid-cols-5 lg:gap-6">

@@ -1,20 +1,19 @@
 import { Link } from 'react-router'
 import { serviceTitles } from '../../content/services'
-import type { Project } from '../../content/work'
+import { kindLabels, type Project } from '../../content/work'
 import { ArrowRight } from '../ui/Button'
 import { ProjectPreview } from '../visuals/ProjectPreview'
 
+const badgeStyles = {
+  experience: 'bg-navy text-white',
+  client: 'bg-electric/10 text-electric',
+  concept: 'border border-dashed border-navy/40 text-navy',
+}
+
 export function KindBadge({ project }: { project: Project }) {
-  if (project.kind === 'concept') {
-    return (
-      <span className="inline-flex items-center rounded-full border border-dashed border-navy/40 px-3 py-1 text-xs font-semibold text-navy">
-        Concept project
-      </span>
-    )
-  }
   return (
-    <span className="inline-flex items-center rounded-full bg-electric/10 px-3 py-1 text-xs font-semibold text-electric">
-      Client work
+    <span className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ${badgeStyles[project.kind]}`}>
+      {kindLabels[project.kind]}
     </span>
   )
 }
@@ -49,6 +48,17 @@ export function ProjectCard({ project, layout = 'stacked', headingLevel: Heading
           {project.title}
         </Heading>
         <p className="mt-3 leading-relaxed text-muted">{project.summary}</p>
+        {project.stats && feature && (
+          <dl className="mt-6 grid grid-cols-3 gap-4 border-y border-line py-5">
+            {project.stats.map((st) => (
+              <div key={st.label}>
+                <dt className="sr-only">{st.label}</dt>
+                <dd className="text-2xl font-bold tracking-tight text-navy sm:text-3xl">{st.value}</dd>
+                <dd className="mt-1 text-sm leading-snug text-muted">{st.label}</dd>
+              </div>
+            ))}
+          </dl>
+        )}
         <p className="mt-5 text-sm text-muted">{serviceTitles(project.services).join(' · ')}</p>
         <span className={`inline-flex items-center gap-2 pt-6 font-semibold text-electric ${feature ? '' : 'mt-auto'}`}>
           View the project <span className="sr-only">: {project.title}</span>

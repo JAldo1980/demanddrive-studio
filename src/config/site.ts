@@ -17,11 +17,19 @@ export const site = {
   /** Absolute site URL used for canonical, Open Graph and sitemap URLs. */
   url: (import.meta.env.VITE_SITE_URL || 'https://www.example.com').replace(/\/$/, ''),
 
+  founder: {
+    name: 'James Alderman',
+    role: 'Founder, B2B marketer and developer',
+    portrait: '/images/james-alderman-portrait.webp',
+    headshot: '/images/james-alderman-headshot.webp',
+  },
+
   contact: {
-    email: null as string | null,
+    email: 'james_codes@icloud.com' as string | null,
+    /** Optional. Leave null to hide the phone number everywhere. */
     phone: null as string | null,
     /** Town/city or full address, as the owner wants it shown publicly. */
-    location: null as string | null,
+    location: 'Stafford, UK' as string | null,
   },
 
   /** Registered company details for the footer and privacy notice. */
@@ -32,7 +40,7 @@ export const site = {
   },
 
   /** Only add profiles the owner has supplied. Empty means none are shown. */
-  social: [] as SocialLink[],
+  social: [{ label: 'LinkedIn', href: 'https://www.linkedin.com/in/jamespalderman/' }] as SocialLink[],
 }
 
 export const siteUrlIsPlaceholder = site.url === 'https://www.example.com'

@@ -1,25 +1,21 @@
-import { hasClientWork, publishedProjects } from '../../content/work'
+import { realProjects } from '../../content/work'
 import { ButtonLink } from '../ui/Button'
 import { Section } from '../ui/Section'
 import { SectionHeading } from '../ui/SectionHeading'
 import { ProjectCard } from '../work/ProjectCard'
 
 export function WorkShowcase() {
-  if (publishedProjects.length === 0) return null
-  const [feature, ...rest] = publishedProjects
+  if (realProjects.length === 0) return null
+  const [feature, ...rest] = realProjects
 
   return (
     <Section labelledBy="work-title">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeading
           id="work-title"
-          eyebrow="Selected work"
-          title="Strategy in practice"
-          intro={
-            hasClientWork
-              ? 'Examples of the problems we help B2B businesses solve, from the business challenge to how success is measured.'
-              : 'Concept projects based on typical B2B briefs, showing how we approach a problem: the challenge, our thinking, what we would deliver and how we would measure success. They are not client engagements.'
-          }
+          eyebrow="Track record"
+          title="Results from real B2B work"
+          intro="Examples from my previous roles and client work. Client names are withheld unless they have agreed to be named, and every figure comes from the reporting at the time."
         />
         <ButtonLink to="/work" variant="secondary" className="self-start lg:self-end">
           All work

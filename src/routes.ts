@@ -19,14 +19,14 @@ export const pages: PageMeta[] = [
     path: '/',
     title: 'DemandDrive Studio | B2B demand generation and conversion',
     description:
-      'DemandDrive Studio helps UK B2B businesses generate better demand and convert more of it, combining growth strategy, SEO, landing pages and measurement.',
+      'DemandDrive Studio is James Alderman, a B2B marketer with 13+ years’ experience helping UK B2B businesses generate better demand and convert more of it through strategy, SEO, landing pages and measurement.',
     priority: 1,
   },
   {
     path: '/work',
     title: 'Work | DemandDrive Studio',
     description:
-      'How DemandDrive Studio approaches B2B growth problems: concept projects covering landing pages, website structure, SEO and measurement.',
+      'Results from real B2B work, including more than doubling inbound enquiries for an industrial manufacturer, plus client work and concept projects.',
     priority: 0.8,
   },
   ...publishedProjects.map((p) => ({
@@ -46,14 +46,14 @@ export const pages: PageMeta[] = [
     path: '/about',
     title: 'About | DemandDrive Studio',
     description:
-      'How DemandDrive Studio works: commercially minded strategy, clear communication and hands-on delivery for UK B2B businesses.',
+      'James Alderman: B2B marketer, former agency co-founder and developer. 13+ years of commercially focused marketing for UK B2B businesses.',
     priority: 0.7,
   },
   {
     path: '/contact',
     title: 'Contact | DemandDrive Studio',
     description:
-      'Discuss your B2B marketing and growth objectives with DemandDrive Studio. Send a short enquiry and we will arrange an introductory call.',
+      'Discuss your B2B marketing and growth objectives with DemandDrive Studio. Send a short enquiry and I will arrange an introductory call.',
     priority: 0.8,
   },
   {
