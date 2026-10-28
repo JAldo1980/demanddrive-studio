@@ -14,7 +14,9 @@ export type PageMeta = {
   noindex?: boolean
   priority?: number
   /** Articles get article Open Graph tags and Article structured data. */
-  article?: { published: string; tags?: string[] }
+  article?: { published: string; modified?: string; tags?: string[] }
+  /** Social preview image (site-relative path) and its alt text. Defaults to the site image. */
+  image?: { src: string; alt?: string }
 }
 
 export const pages: PageMeta[] = [
@@ -47,11 +49,12 @@ export const pages: PageMeta[] = [
   },
   ...posts.map((p) => ({
     path: `/insights/${p.slug}`,
-    title: `${p.title} | DemandDrive Studio`,
-    description: p.description,
+    title: `${p.seoTitle || p.title} | DemandDrive Studio`,
+    description: p.metaDescription || p.description,
     priority: 0.6,
     noindex: p.draft,
-    article: { published: p.date, tags: p.tags },
+    article: { published: p.date, modified: p.updated, tags: p.tags },
+    ...(p.image ? { image: { src: p.image, alt: p.imageAlt } } : {}),
   })),
   {
     path: '/free-audit',

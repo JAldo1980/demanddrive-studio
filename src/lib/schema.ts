@@ -110,18 +110,26 @@ function breadcrumbs(meta: PageMeta): Node | null {
   }
 }
 
+/** FAQs for a page: site FAQs by path, or the questions listed in a post's front matter. */
+function pageFaqs(meta: PageMeta) {
+  if (faqsByPath[meta.path]) return faqsByPath[meta.path]
+  if (!meta.path.startsWith('/insights/')) return undefined
+  const postFaqs = getPost(meta.path.split('/')[2])?.faqs
+  return postFaqs?.length ? postFaqs : undefined
+}
+
 function pageType(meta: PageMeta): string | string[] {
   if (meta.path === '/about') return 'ProfilePage'
   if (meta.path === '/contact') return 'ContactPage'
   if (meta.path === '/work' || meta.path === '/insights') return 'CollectionPage'
-  if (faqsByPath[meta.path]) return ['WebPage', 'FAQPage']
+  if (pageFaqs(meta)) return ['WebPage', 'FAQPage']
   return 'WebPage'
 }
 
 export function structuredData(meta: PageMeta) {
   const url = pageUrl(meta.path)
   const crumb = breadcrumbs(meta)
-  const faqs = faqsByPath[meta.path]
+  const faqs = pageFaqs(meta)
   const graph: Node[] = [organization(), website(), person()]
 
   graph.push({
@@ -191,8 +199,8 @@ export function structuredData(meta: PageMeta) {
       headline: post.title,
       description: post.description,
       datePublished: post.date,
-      dateModified: post.date,
-      image: `${site.url}/og-image.png`,
+      dateModified: post.updated ?? post.date,
+      image: post.image ? (/^https?:\/\//.test(post.image) ? post.image : `${site.url}${post.image}`) : `${site.url}/og-image.png`,
       author: { '@id': ids.person },
       publisher: { '@id': ids.org },
       mainEntityOfPage: { '@id': `${url}#webpage` },

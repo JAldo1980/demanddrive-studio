@@ -1,0 +1,87 @@
+# Pages CMS configuration: https://pagescms.org
+# Sign in at https://app.pagescms.org with GitHub and open this repository.
+# Saving a post commits it to GitHub, and Netlify then rebuilds the site.
+
+media:
+  input: public/images/insights
+  output: /images/insights
+  rename: safe
+  categories: [image]
+
+content:
+  - name: insights
+    label: Insights posts
+    type: collection
+    path: src/content/insights
+    filename: "{primary}.md"
+    format: yaml-frontmatter
+    view:
+      fields: [title, date, draft]
+      primary: title
+      sort: date
+      order: desc
+    fields:
+      - name: title
+        label: Headline
+        type: string
+        required: true
+        description: The headline shown on the page. Also used as the search title unless you fill in SEO title below.
+      - name: description
+        label: Summary
+        type: text
+        required: true
+        description: One or two sentences shown under the headline, in the Insights list and (unless Meta description is set) in Google.
+      - name: date
+        label: Publish date
+        type: date
+        required: true
+        options:
+          format: yyyy-MM-dd
+      - name: updated
+        label: Last updated
+        type: date
+        default: ""
+        description: Optional. Set when you make a meaningful update; leave empty otherwise.
+        options:
+          format: yyyy-MM-dd
+      - name: tags
+        label: Tags
+        type: string
+        list: true
+        description: For example Landing pages, SEO, Manufacturing, Conversion, Measurement.
+      - name: draft
+        label: Draft (not published)
+        type: boolean
+        default: false
+        description: Drafts are kept out of the live site and the sitemap.
+      - name: seoTitle
+        label: SEO title
+        type: string
+        description: Optional. The title shown in Google, if it should differ from the headline. Aim for about 60 characters; " | DemandDrive Studio" is added automatically.
+      - name: metaDescription
+        label: Meta description
+        type: text
+        description: Optional. The snippet shown in Google, if it should differ from the summary. Aim for about 150 to 160 characters.
+      - name: image
+        label: Featured image
+        type: image
+        description: Optional. Shown at the top of the post and used for LinkedIn and other social previews. Use a 1200 x 630 image.
+      - name: imageAlt
+        label: Image alt text
+        type: string
+        description: Describe what the image shows, for screen readers and search engines.
+      - name: faqs
+        label: FAQs
+        type: object
+        list: true
+        description: Optional. Questions the post answers. They appear at the end of the post and are added as FAQ structured data for search engines.
+        fields:
+          - name: question
+            label: Question
+            type: string
+          - name: answer
+            label: Answer
+            type: text
+      - name: body
+        label: Article
+        type: rich-text

@@ -14,6 +14,17 @@ export type Post = {
   tags?: string[]
   /** Drafts appear in development only. */
   draft?: boolean
+  /** ISO date of the last meaningful update. Defaults to `date`. */
+  updated?: string
+  /** Search-result title, if it should differ from the on-page headline. */
+  seoTitle?: string
+  /** Search-result snippet, if it should differ from `description`. */
+  metaDescription?: string
+  /** Featured image path, e.g. /images/insights/photo.webp. Also used for social previews. */
+  image?: string
+  imageAlt?: string
+  /** Questions answered in the post. Shown at the end and added as FAQ structured data. */
+  faqs?: { question: string; answer: string }[]
   html: string
   readingMinutes: number
 }

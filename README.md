@@ -162,9 +162,11 @@ Write the article here in Markdown. Use ## for section headings.
 ```
 
 - `draft: true` shows the post in `npm run dev` only (marked "Draft"); remove it, or set it to `false`, to publish.
+- Optional SEO fields: `seoTitle` (Google title, if different from the headline), `metaDescription` (Google snippet, if different from the summary), `image` and `imageAlt` (featured image, 1200 x 630, stored in `public/images/insights/` and referenced as `/images/insights/name.webp`; also used for social previews), `updated` (last meaningful update, YYYY-MM-DD) and `faqs` (a list of `question` / `answer` pairs, shown at the end of the post and added as FAQPage structured data).
+- Front matter is YAML, parsed with a vendored copy of js-yaml (`scripts/vendor/`).
+- **Editing in a browser:** `.pages.yml` configures [Pages CMS](https://pagescms.org). Sign in at app.pagescms.org with GitHub and open this repository to write and edit posts in a form. Saving commits to GitHub, and Netlify rebuilds the site.
 - Each post automatically gets its own page, an entry in the sitemap and RSS feed, Open Graph article tags and Article structured data, an author box and links to other posts.
 - Markdown is converted to HTML at build time (see `markdownPosts` in `vite.config.ts`), so no Markdown library is shipped to the browser.
-- A browser-based editor such as Pages CMS or Decap CMS can be added later; it would edit these same files in GitHub.
 
 **Add work:** add a project to `src/content/work.ts`. Each one gets a page at `/work/<slug>`, a sitemap entry and a card on the Work page; the first three also appear on the homepage. Use `kind: 'client'` only for real, approved client work, and set `outcome` only to a verifiable result. Concept projects never show results. For the preview, use an existing mock-up (`landing`, `redesign`, `audit`) or add one in `src/components/visuals/` and register it in `ProjectPreview.tsx`. Real screenshots can replace mock-ups later.
 

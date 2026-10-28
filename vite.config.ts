@@ -4,6 +4,8 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import { marked } from 'marked'
 import { defineConfig, type Plugin } from 'vite'
+// js-yaml 4.1.1 (MIT), vendored so the build needs no extra dependency.
+import { CORE_SCHEMA, load as loadYaml } from './scripts/vendor/js-yaml.mjs'
 
 /**
  * Make `vite preview` serve prerendered pages the way a static host does:
@@ -34,7 +36,7 @@ function staticHostPreview(): Plugin {
 /**
  * Turn Markdown posts (src/content/insights/*.md) into modules at build time:
  * `export default { ...frontMatter, html, readingMinutes }`. Front matter is
- * simple `key: value` lines between `---` markers.
+ * YAML between `---` markers, as written by hand or by Pages CMS (.pages.yml).
  */
 function markdownPosts(): Plugin {
   return {
@@ -45,17 +47,34 @@ function markdownPosts(): Plugin {
       const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/.exec(source)
       if (!match) throw new Error(`${id}: missing front matter`)
       const [, front, body] = match
-      const data: Record<string, unknown> = {}
-      for (const line of front.split(/\r?\n/)) {
-        const m = /^(\w+):\s*(.*)$/.exec(line.trim())
-        if (!m) continue
-        const raw = m[2].trim().replace(/^(['"])(.*)\1$/, '$2')
-        data[m[1]] =
-          m[1] === 'tags'
-            ? raw.replace(/^\[|\]$/g, '').split(',').map((t) => t.trim()).filter(Boolean)
-            : raw === 'true' || raw === 'false'
-              ? raw === 'true'
-              : raw
+      const parsed = loadYaml(front, { schema: CORE_SCHEMA }) as Record<string, unknown> | null | undefined
+      if (parsed != null && (typeof parsed !== 'object' || Array.isArray(parsed))) {
+        throw new Error(`${id}: front matter must be YAML key: value pairs`)
+      }
+      const data: Record<string, unknown> = { ...(parsed ?? {}) }
+      // Tags may be a YAML list or a comma-separated string.
+      if (typeof data.tags === 'string') {
+        data.tags = data.tags.replace(/^\[|\]$/g, '').split(',').map((t) => t.trim()).filter(Boolean)
+      }
+      // Dates as plain YYYY-MM-DD strings, however they were written.
+      for (const key of ['date', 'updated']) {
+        const value = data[key]
+        if (value instanceof Date) data[key] = value.toISOString().slice(0, 10)
+        else if (typeof value === 'string') data[key] = value.slice(0, 10)
+        else if (value === null || value === '') delete data[key]
+      }
+      // Drop empty optional fields left behind by the CMS form.
+      for (const [key, value] of Object.entries(data)) {
+        if (value === null || value === '' || (Array.isArray(value) && value.length === 0)) delete data[key]
+      }
+      if (Array.isArray(data.faqs)) {
+        data.faqs = data.faqs.filter(
+          (f): f is { question: string; answer: string } =>
+            Boolean(f && typeof f.question === 'string' && f.question.trim() && typeof f.answer === 'string' && f.answer.trim()),
+        )
+      }
+      for (const key of ['title', 'description', 'date']) {
+        if (!data[key]) throw new Error(`${id}: front matter is missing "${key}"`)
       }
       const html = marked.parse(body, { async: false })
       const words = body.split(/\s+/).filter(Boolean).length

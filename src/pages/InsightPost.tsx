@@ -40,7 +40,15 @@ export default function InsightPost() {
                 <p className="text-sm leading-snug">
                   <span className="block font-semibold text-navy">{site.founder.name}</span>
                   <span className="text-muted">
-                    <time dateTime={post.date}>{formatDate(post.date)}</time> · {post.readingMinutes} min read
+                    <time dateTime={post.date}>{formatDate(post.date)}</time>
+                    {post.updated && post.updated !== post.date && (
+                      <>
+                        {' · Updated '}
+                        <time dateTime={post.updated}>{formatDate(post.updated)}</time>
+                      </>
+                    )}
+                    {' · '}
+                    {post.readingMinutes} min read
                   </span>
                 </p>
               </div>
@@ -49,7 +57,35 @@ export default function InsightPost() {
         </header>
 
         <Container className="py-12 sm:py-16">
+          {post.image && (
+            <figure className="mx-auto mb-10 max-w-3xl">
+              <img
+                src={post.image}
+                alt={post.imageAlt ?? ''}
+                width={1200}
+                height={630}
+                className="aspect-[40/21] w-full rounded-2xl bg-cool object-cover"
+              />
+            </figure>
+          )}
+
           <div className="prose-article mx-auto max-w-3xl" dangerouslySetInnerHTML={{ __html: post.html }} />
+
+          {post.faqs && post.faqs.length > 0 && (
+            <section aria-labelledby="post-faqs" className="mx-auto mt-12 max-w-3xl">
+              <h2 id="post-faqs" className="text-2xl font-bold tracking-tight text-navy">
+                Common questions
+              </h2>
+              <dl className="mt-6 divide-y divide-line border-y border-line">
+                {post.faqs.map((f) => (
+                  <div key={f.question} className="py-5">
+                    <dt className="font-semibold text-navy">{f.question}</dt>
+                    <dd className="mt-2 leading-relaxed text-muted">{f.answer}</dd>
+                  </div>
+                ))}
+              </dl>
+            </section>
+          )}
 
           <aside aria-label="About the author" className="mx-auto mt-14 flex max-w-3xl flex-col gap-5 rounded-2xl bg-cool p-6 sm:flex-row sm:items-center sm:p-8">
             <img
