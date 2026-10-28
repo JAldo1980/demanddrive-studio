@@ -37,7 +37,7 @@ This site was built without inventing any client names, results, credentials, co
 All copy was written to the brief and brand guidelines, in UK English, without statistics, guarantees or claims about past results. The owner should still review:
 
 - Hero headline: "Generate better B2B demand. Convert more of it."
-- Service descriptions and "typically includes" lists in `src/content/services.ts`. Make sure every listed service is one the studio actually offers, e.g. LinkedIn Ads and CRM attribution.
+- Service descriptions and "typically includes" lists in `src/content/services.ts`. Make sure every listed service is one the studio actually offers, e.g. CRM attribution.
 - "What happens next" on the contact page. It deliberately does not promise a response time. Add one (e.g. "within one working day") only if it can be met consistently.
 - Meta titles and descriptions in `src/routes.ts`.
 

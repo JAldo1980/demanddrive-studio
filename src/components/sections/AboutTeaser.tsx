@@ -13,7 +13,7 @@ const pillars = [
   },
   {
     title: 'Hands-on delivery',
-    text: 'The same people who shape the plan build the campaigns, pages and tracking, so strategy does not get lost in handover.',
+    text: 'The same people who shape the plan build the content, pages and tracking, so strategy does not get lost in handover.',
   },
 ]
 

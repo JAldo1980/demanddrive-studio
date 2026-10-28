@@ -11,15 +11,15 @@ export function ServicesOverview() {
         <SectionHeading
           id="services-title"
           eyebrow="Services"
-          title="Five services, planned as one"
-          intro="Strategy sets the direction. SEO and paid media create demand. Landing pages convert it. Measurement shows what to improve next. You can start with one, but each is designed to work with the others."
+          title="Four services, planned as one"
+          intro="Strategy sets the direction. SEO builds visibility with the right buyers. Landing pages convert that interest. Measurement shows what to improve next. You can start with one, but each is designed to work with the others."
         />
         <ButtonLink to="/services" variant="secondary" className="shrink-0 self-start lg:self-end">
           How they work together
         </ButtonLink>
       </div>
 
-      <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+      <ul className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
         {services.map((s, i) => (
           <li key={s.id}>
             <Link
@@ -31,24 +31,26 @@ export function ServicesOverview() {
               </span>
               <h3 className="mt-3 text-xl font-semibold group-hover:text-electric">{s.title}</h3>
               <p className="mt-3 leading-relaxed text-muted">{s.summary}</p>
-              <span className="mt-6 inline-flex items-center gap-2 pt-2 text-sm font-semibold text-electric">
+              <span className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-electric">
                 Learn more <span className="sr-only">about {s.title}</span>
                 <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
               </span>
             </Link>
           </li>
         ))}
-        <li className="on-dark flex flex-col rounded-lg bg-navy p-6 text-white sm:p-7">
+      </ul>
+
+      <div className="on-dark mt-5 flex flex-col gap-6 rounded-lg bg-navy p-6 text-white sm:p-8 md:flex-row md:items-center md:justify-between">
+        <div className="max-w-2xl">
           <p className="text-xl font-semibold text-white">Not sure where to start?</p>
-          <p className="mt-3 leading-relaxed text-on-navy-muted">
+          <p className="mt-2 leading-relaxed text-on-navy-muted">
             Tell us what you are trying to achieve and we will suggest where effort is likely to make the most difference.
           </p>
-          <span aria-hidden="true" className="min-h-6 flex-1" />
-          <ButtonLink to="/contact" variant="inverse" className="mt-auto self-start">
-            Discuss your goals
-          </ButtonLink>
-        </li>
-      </ul>
+        </div>
+        <ButtonLink to="/contact" variant="inverse" className="self-start md:self-center">
+          Discuss your goals
+        </ButtonLink>
+      </div>
     </Section>
   )
 }

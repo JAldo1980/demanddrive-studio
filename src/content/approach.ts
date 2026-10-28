@@ -14,7 +14,7 @@ export const approach: Step[] = [
   {
     title: 'Build',
     description:
-      'We put the work in place: campaigns, content, landing pages and tracking, delivered hands-on rather than handed off.',
+      'We put the work in place: content, SEO improvements, landing pages and tracking, delivered hands-on rather than handed off.',
   },
   {
     title: 'Measure',

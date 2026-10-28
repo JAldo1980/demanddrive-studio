@@ -23,7 +23,7 @@ export const services: Service[] = [
       'Channel and budget recommendations',
       'A prioritised, practical action plan',
     ],
-    connects: 'Sets the direction and success measures the other four services work to.',
+    connects: 'Sets the direction and success measures the other three services work to.',
   },
   {
     id: 'seo',
@@ -40,20 +40,6 @@ export const services: Service[] = [
     connects: 'Builds long-term demand that landing pages convert and measurement attributes.',
   },
   {
-    id: 'paid-media',
-    title: 'Paid media and demand generation',
-    summary: 'Reach the right accounts and decision-makers with focused campaigns.',
-    purpose:
-      'Paid search and LinkedIn can put you in front of qualified buyers quickly, but only when targeting, messaging and the landing experience line up. We plan, build and manage campaigns against the quality of enquiries they produce, not the volume of clicks.',
-    includes: [
-      'Google Ads and LinkedIn Ads campaigns',
-      'Audience and account targeting',
-      'Ad messaging and creative briefs',
-      'Budget management and reporting',
-    ],
-    connects: 'Creates near-term demand and tests messages that can inform SEO and page content.',
-  },
-  {
     id: 'landing-pages',
     title: 'Landing pages and conversion optimisation',
     summary: 'Make it easier for interested prospects to take the next step.',
@@ -65,7 +51,7 @@ export const services: Service[] = [
       'Form and enquiry-journey improvements',
       'Structured testing where traffic allows',
     ],
-    connects: 'Turns the visibility from SEO and paid media into enquiries your team can follow up.',
+    connects: 'Turns the visibility from SEO into enquiries your team can follow up.',
   },
   {
     id: 'measurement',

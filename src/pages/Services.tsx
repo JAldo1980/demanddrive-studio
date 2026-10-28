@@ -9,7 +9,7 @@ import { SectionHeading } from '../components/ui/SectionHeading'
 
 const flow = [
   { label: 'Strategy', detail: 'sets direction and measures', ids: ['growth-strategy'] },
-  { label: 'SEO and paid media', detail: 'create qualified demand', ids: ['seo', 'paid-media'] },
+  { label: 'SEO', detail: 'builds visibility with the right buyers', ids: ['seo'] },
   { label: 'Landing pages', detail: 'turn interest into enquiries', ids: ['landing-pages'] },
   { label: 'Measurement', detail: 'shows what to improve next', ids: ['measurement'] },
 ]
@@ -43,7 +43,7 @@ export default function Services() {
           id="together-title"
           eyebrow="How they work together"
           title="One system, not a list of tactics"
-          intro="Buyers do not experience your marketing channel by channel. A search, an advert, a landing page and a follow-up call all form one impression. We plan them the same way."
+          intro="Buyers do not experience your marketing channel by channel. A search result, a service page, a landing page and a follow-up call all form one impression. We plan them the same way."
         />
         <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {flow.map((f, i) => (

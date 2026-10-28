@@ -18,7 +18,7 @@ export function Hero() {
             Generate better B2B demand. <span className="text-electric">Convert more of it.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted sm:text-xl">
-            DemandDrive Studio brings growth strategy, SEO, paid media and conversion-focused landing pages into
+            DemandDrive Studio brings growth strategy, SEO, conversion-focused landing pages and measurement into
             one joined-up plan, built and measured against the commercial outcomes that matter to your business.
           </p>
           <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">

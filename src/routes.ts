@@ -17,14 +17,14 @@ export const pages: PageMeta[] = [
     path: '/',
     title: 'DemandDrive Studio | B2B demand generation and conversion',
     description:
-      'DemandDrive Studio helps UK B2B businesses generate better demand and convert more of it, combining growth strategy, SEO, paid media, landing pages and measurement.',
+      'DemandDrive Studio helps UK B2B businesses generate better demand and convert more of it, combining growth strategy, SEO, landing pages and measurement.',
     priority: 1,
   },
   {
     path: '/services',
     title: 'Services | DemandDrive Studio',
     description:
-      'B2B growth strategy, SEO, paid media, landing pages and conversion optimisation, and measurement: five connected services planned around your commercial goals.',
+      'B2B growth strategy, SEO, landing pages and conversion optimisation, and measurement: four connected services planned around your commercial goals.',
     priority: 0.9,
   },
   {

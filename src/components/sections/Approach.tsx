@@ -10,7 +10,7 @@ export function Approach() {
         id="approach-title"
         eyebrow="How we work"
         title="A simple, repeatable process"
-        intro="Every engagement follows the same cycle, whether we are fixing one landing page or running your demand generation programme."
+        intro="Every engagement follows the same cycle, whether we are fixing one landing page or shaping your wider growth plan."
       />
       <ol className="mt-14 grid gap-10 md:grid-cols-5 md:gap-6">
         {approach.map((step, i) => (

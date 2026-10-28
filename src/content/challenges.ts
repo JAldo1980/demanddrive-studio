@@ -4,7 +4,7 @@ export const challenges: Challenge[] = [
   {
     title: 'Disconnected channels',
     problem:
-      'SEO, paid media, the website and sales follow-up are managed separately, so effort is duplicated and the buyer journey breaks between them.',
+      'SEO, content, the website and sales follow-up are managed separately, so effort is duplicated and the buyer journey breaks between them.',
     response: 'One plan that sets a shared objective and gives each channel a defined role.',
   },
   {
@@ -22,7 +22,7 @@ export const challenges: Challenge[] = [
   {
     title: 'Activity without commercial direction',
     problem:
-      'Campaigns run because they always have, rather than because they support a defined growth objective.',
+      'Marketing activity continues because it always has, rather than because it supports a defined growth objective.',
     response: 'Priorities agreed against commercial goals, then reviewed as results come in.',
   },
 ]

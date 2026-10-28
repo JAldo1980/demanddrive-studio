@@ -14,12 +14,12 @@ export const principles: Principle[] = [
   {
     title: 'Hands-on delivery',
     description:
-      'The people who shape the strategy also build the campaigns, pages and tracking, so nothing is lost in translation.',
+      'The people who shape the strategy also build the content, pages and tracking, so nothing is lost in translation.',
   },
   {
     title: 'Joined-up thinking',
     description:
-      'Strategy, SEO, paid media, landing pages and measurement are planned together, because buyers experience them together.',
+      'Strategy, SEO, landing pages and measurement are planned together, because buyers experience them together.',
   },
   {
     title: 'Evidence over assumption',
