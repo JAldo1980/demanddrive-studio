@@ -36,6 +36,18 @@ function isBrowserMock(p: Preview): p is keyof typeof browserMocks {
 }
 
 export function ProjectPreview({ project, className = '' }: { project: Project; className?: string }) {
+  if (project.screenshot) {
+    const shot = project.screenshot
+    return (
+      <BrowserFrame
+        label={shot.alt}
+        address={project.liveUrl?.replace(/^https?:\/\//, '') ?? project.client}
+        className={className}
+      >
+        <img src={shot.src} width={shot.width} height={shot.height} alt="" loading="lazy" className="block h-auto w-full" />
+      </BrowserFrame>
+    )
+  }
   const preview = project.preview
   if (!preview) {
     return (

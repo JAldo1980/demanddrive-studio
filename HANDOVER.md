@@ -12,15 +12,12 @@ This site was built without inventing any client names, results, credentials, co
 | Privacy notice: final legal wording | `src/pages/Privacy.tsx` | **Draft**, clearly labelled on the page and set to `noindex`. Needs review by someone qualified to advise on UK GDPR. Confirm lawful basis, processors (e.g. Netlify and any CRM), retention period and last-updated date. Remove `noindex` in `src/routes.ts` once approved. |
 | Form notification address | Netlify dashboard → Forms → Form notifications | An email notification exists. Confirm it goes to the inbox you want. A live test enquiry was accepted on 28 October 2026. |
 
-## 2. Please confirm: real results, quotes and client work
+## 2. Confirmed by the owner (28 October 2026)
 
-| Item | Where | What to check |
-| --- | --- | --- |
-| Results from previous roles | `src/content/work.ts` (`kind: 'experience'`), `src/components/sections/TrackRecord.tsx` | The coatings, water treatment and engineering go-to-market examples come from your decks. They are labelled **Previous role**, anonymised, and say they were delivered before DemandDrive Studio. Confirm you are free to publish them under any agreement with the agency or employer involved. |
-| Head of Commercial quote | `src/content/testimonials.ts` | Your decks contain two versions: "…the work your team have done" and "…the work James has done". The site uses the **"your team"** version, which is the more cautious and likely verbatim one. Confirm the wording, and that the client is happy to be quoted anonymously. |
-| Board report quote | `src/content/testimonials.ts` | An excerpt from the client's board report. Confirm it can be published. |
-| The Circle Line | `src/content/work.ts` (`kind: 'client'`) | Named, with a link to the live site, as on your developer portfolio. Confirm the client is happy to appear on this site too. A screenshot of the site would be a better preview than the current text panel. |
-| Paid media in the coatings case study | `src/content/work.ts` | Listed accurately as part of that historical work, even though paid media is no longer an offered service. |
+- **Results from previous roles** may be published, anonymised and labelled **Previous role** (`src/content/work.ts`, `TrackRecord.tsx`).
+- **Head of Commercial quote:** the "…the work your team have done" wording is correct, and may be published anonymously (`src/content/testimonials.ts`). The board report excerpt may also be published.
+- **The Circle Line** is happy to appear, named and linked. The project uses a screenshot of their live homepage (`public/images/work/the-circle-line-home.webp`), captured on 28 October 2026. Retake it if their site changes.
+- The coatings case study lists paid media accurately as part of that historical work, even though paid media is no longer an offered service.
 
 ## 3. Content to supply when available
 

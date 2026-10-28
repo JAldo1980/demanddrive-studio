@@ -36,6 +36,8 @@ export type Project = {
   services: string[]
   /** Omit to show a plain text panel instead of a mock-up. */
   preview?: Preview
+  /** A real screenshot of the finished work. Takes priority over `preview`. */
+  screenshot?: { src: string; width: number; height: number; alt: string }
   liveUrl?: string
   approved: boolean
 }
@@ -105,6 +107,33 @@ export const projects: Project[] = [
     approved: true,
   },
   {
+    slug: 'the-circle-line-website',
+    kind: 'client',
+    title: 'A calm, credible website for a leadership psychology consultancy',
+    client: 'The Circle Line',
+    sector: 'Professional services',
+    summary:
+      'A React website senior clients can trust on sight, with a clear route in for individuals and for businesses.',
+    problem:
+      'The Circle Line uses psychology to help leaders and teams perform. Senior clients needed to trust the website on sight, so it had to look as considered as the service: quiet, premium and uncluttered. Two audiences, individuals and businesses, each needed a clear path from the first screen, and the site had to be easy to extend.',
+    approach: [
+      'Built the site in React and TypeScript, from component structure to finished interface.',
+      'Gave individuals and businesses their own clear route from the first screen.',
+      'Created reusable, typed components so new pages and sections slot in without rework.',
+      'Delivered a fully responsive layout.',
+    ],
+    deliverables: ['Website build in React and TypeScript', 'Reusable component system', 'Responsive interface'],
+    services: ['landing-pages'],
+    screenshot: {
+      src: '/images/work/the-circle-line-home.webp',
+      width: 1440,
+      height: 900,
+      alt: 'The Circle Line homepage: “Leaders, de-risked.” over a full-width image, with navigation and an Enquire button',
+    },
+    liveUrl: 'https://thecircleline.co.uk',
+    approved: true,
+  },
+  {
     slug: 'engineering-new-sector-go-to-market',
     kind: 'experience',
     title: 'Opening a new sector for a defence-focused engineering manufacturer',
@@ -124,27 +153,6 @@ export const projects: Project[] = [
     measures: ['Enquiries and pipeline from the new sector'],
     services: ['growth-strategy', 'landing-pages'],
     preview: 'gtm',
-    approved: true,
-  },
-  {
-    slug: 'the-circle-line-website',
-    kind: 'client',
-    title: 'A calm, credible website for a leadership psychology consultancy',
-    client: 'The Circle Line',
-    sector: 'Professional services',
-    summary:
-      'A React website senior clients can trust on sight, with a clear route in for individuals and for businesses.',
-    problem:
-      'The Circle Line uses psychology to help leaders and teams perform. Senior clients needed to trust the website on sight, so it had to look as considered as the service: quiet, premium and uncluttered. Two audiences, individuals and businesses, each needed a clear path from the first screen, and the site had to be easy to extend.',
-    approach: [
-      'Built the site in React and TypeScript, from component structure to finished interface.',
-      'Gave individuals and businesses their own clear route from the first screen.',
-      'Created reusable, typed components so new pages and sections slot in without rework.',
-      'Delivered a fully responsive layout.',
-    ],
-    deliverables: ['Website build in React and TypeScript', 'Reusable component system', 'Responsive interface'],
-    services: ['landing-pages'],
-    liveUrl: 'https://thecircleline.co.uk',
     approved: true,
   },
   {
