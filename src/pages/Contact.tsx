@@ -1,4 +1,5 @@
 import { EnquiryForm } from '../components/EnquiryForm'
+import { Faq } from '../components/sections/Faq'
 import { PageHero } from '../components/sections/PageHero'
 import { Container } from '../components/ui/Container'
 import { Placeholder } from '../components/ui/Placeholder'
@@ -78,6 +79,7 @@ export default function Contact() {
           </aside>
         </Container>
       </section>
+      <Faq tone="cool" />
     </>
   )
 }

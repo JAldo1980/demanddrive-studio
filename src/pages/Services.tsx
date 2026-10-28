@@ -1,18 +1,12 @@
 import { Link } from 'react-router'
 import { services } from '../content/services'
+import { publishedProjects } from '../content/work'
 import { Approach } from '../components/sections/Approach'
+import { GrowthSystem } from '../components/sections/GrowthSystem'
 import { FinalCta } from '../components/sections/FinalCta'
 import { PageHero } from '../components/sections/PageHero'
 import { Container } from '../components/ui/Container'
-import { Section } from '../components/ui/Section'
-import { SectionHeading } from '../components/ui/SectionHeading'
 
-const flow = [
-  { label: 'Strategy', detail: 'sets direction and measures', ids: ['growth-strategy'] },
-  { label: 'SEO', detail: 'builds visibility with the right buyers', ids: ['seo'] },
-  { label: 'Landing pages', detail: 'turn interest into enquiries', ids: ['landing-pages'] },
-  { label: 'Measurement', detail: 'shows what to improve next', ids: ['measurement'] },
-]
 
 export default function Services() {
   return (
@@ -38,27 +32,7 @@ export default function Services() {
         </nav>
       </PageHero>
 
-      <Section tone="cool" labelledBy="together-title">
-        <SectionHeading
-          id="together-title"
-          eyebrow="How they work together"
-          title="One system, not a list of tactics"
-          intro="Buyers do not experience your marketing channel by channel. A search result, a service page, a landing page and a follow-up call all form one impression. We plan them the same way."
-        />
-        <ol className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {flow.map((f, i) => (
-            <li key={f.label} className="relative rounded-lg border border-line bg-white p-6">
-              <p className="text-sm font-semibold text-electric tabular-nums">{String(i + 1).padStart(2, '0')}</p>
-              <p className="mt-2 text-lg font-semibold text-navy">{f.label}</p>
-              <p className="mt-1 text-muted">{f.detail}</p>
-            </li>
-          ))}
-        </ol>
-        <p className="mt-6 max-w-3xl text-muted">
-          What we learn from measurement feeds back into strategy, so priorities are adjusted based on evidence rather
-          than assumption.
-        </p>
-      </Section>
+      <GrowthSystem />
 
       <section aria-label="Service details" className="bg-white">
         <Container>
@@ -94,6 +68,18 @@ export default function Services() {
                   <div className="self-start rounded-lg bg-cool p-5">
                     <h3 className="text-sm font-semibold text-navy">How it connects</h3>
                     <p className="mt-2 leading-relaxed text-muted">{s.connects}</p>
+                    {publishedProjects
+                      .filter((p) => p.services.includes(s.id))
+                      .slice(0, 1)
+                      .map((p) => (
+                        <Link
+                          key={p.slug}
+                          to={`/work/${p.slug}`}
+                          className="mt-4 block border-t border-line pt-4 text-sm font-medium text-electric underline-offset-2 hover:underline"
+                        >
+                          See it in practice: {p.title}
+                        </Link>
+                      ))}
                   </div>
                 </div>
               </div>

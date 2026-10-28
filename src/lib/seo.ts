@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { site } from '../config/site'
+import { faqs } from '../content/faqs'
 import type { PageMeta } from '../routes'
 
 const OG_IMAGE = '/og-image.png'
@@ -59,7 +60,19 @@ export function renderHead(meta: PageMeta) {
           ...(site.social.length ? { sameAs: site.social.map((s) => s.href) } : {}),
         })}</script>`
       : ''
-  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, jsonLd].filter(Boolean).join('\n    ')
+  const faqLd =
+    meta.path === '/'
+      ? `<script type="application/ld+json">${JSON.stringify({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: faqs.map((f) => ({
+            '@type': 'Question',
+            name: f.question,
+            acceptedAnswer: { '@type': 'Answer', text: f.answer },
+          })),
+        })}</script>`
+      : ''
+  return [`<title>${escapeHtml(meta.title)}</title>`, ...tags, jsonLd, faqLd].filter(Boolean).join('\n    ')
 }
 
 /** Client-side: keep the <head> in sync after in-app navigation. */

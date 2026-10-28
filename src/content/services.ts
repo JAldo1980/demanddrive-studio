@@ -68,3 +68,7 @@ export const services: Service[] = [
     connects: 'Shows which activity contributes to pipeline, and feeds the next round of priorities.',
   },
 ]
+
+export function serviceTitles(ids: string[]) {
+  return ids.map((id) => services.find((s) => s.id === id)?.title).filter((t): t is string => !!t)
+}

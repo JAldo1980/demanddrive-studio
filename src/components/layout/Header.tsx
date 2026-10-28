@@ -37,7 +37,7 @@ export function Header() {
           <Logo className="h-14 w-auto" />
         </Link>
 
-        <nav aria-label="Main" className="hidden items-center gap-8 md:flex">
+        <nav aria-label="Main" className="hidden items-center gap-8 lg:flex">
           <ul className="flex items-center gap-8">
             {mainNav.map((item) => (
               <li key={item.to}>
@@ -55,7 +55,7 @@ export function Header() {
         <button
           ref={buttonRef}
           type="button"
-          className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-navy md:hidden"
+          className="-mr-2 inline-flex size-11 items-center justify-center rounded-md text-navy lg:hidden"
           aria-expanded={open}
           aria-controls={menuId}
           onClick={() => setOpen(!open)}
@@ -67,7 +67,7 @@ export function Header() {
         </button>
       </Container>
 
-      <nav id={menuId} aria-label="Main" hidden={!open} className="border-t border-line bg-white md:hidden">
+      <nav id={menuId} aria-label="Main" hidden={!open} className="border-t border-line bg-white lg:hidden">
         <Container className="py-4">
           <ul className="divide-y divide-line">
             {mainNav.map((item) => (

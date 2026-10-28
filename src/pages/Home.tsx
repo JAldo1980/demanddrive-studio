@@ -1,20 +1,24 @@
 import { AboutTeaser } from '../components/sections/AboutTeaser'
 import { Approach } from '../components/sections/Approach'
-import { CaseStudies } from '../components/sections/CaseStudies'
 import { Challenges } from '../components/sections/Challenges'
+import { Faq } from '../components/sections/Faq'
 import { FinalCta } from '../components/sections/FinalCta'
+import { GrowthSystem } from '../components/sections/GrowthSystem'
 import { Hero } from '../components/sections/Hero'
-import { ServicesOverview } from '../components/sections/ServicesOverview'
+import { Testimonials } from '../components/sections/Testimonials'
+import { WorkShowcase } from '../components/sections/WorkShowcase'
 
 export default function Home() {
   return (
     <>
       <Hero />
+      <WorkShowcase />
+      <Testimonials />
       <Challenges />
-      <ServicesOverview />
+      <GrowthSystem />
       <Approach />
-      <CaseStudies />
       <AboutTeaser />
+      <Faq />
       <FinalCta />
     </>
   )

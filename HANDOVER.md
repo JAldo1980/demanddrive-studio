@@ -20,10 +20,12 @@ This site was built without inventing any client names, results, credentials, co
 | Item | Where | Notes |
 | --- | --- | --- |
 | Studio background and experience | `src/pages/About.tsx`, "Background and experience" section | Placeholder. Add accurate, verifiable details only: years of experience, sectors, types of work. Founder or team profiles can go here. |
-| Case studies | `src/content/caseStudies.ts` | None supplied, so the homepage "Selected work" section is **hidden on the live site**. Add entries with `approved: true` only when the client has approved publication and the results are verifiable. |
-| Testimonials, client logos, accreditations | Not built | Intentionally omitted. Add only genuine, approved material. |
+| Client case studies | `src/content/work.ts` | None supplied. The Work section shows three **concept projects**, clearly labelled as such, with a note on the Work page that they are not client engagements. Add real projects with `kind: 'client'` and `approved: true` only when the client has approved publication; include an `outcome` only if it is verifiable. Once client work exists, the "these are concepts" note is hidden automatically. |
+| Testimonials | `src/content/testimonials.ts` | Section built but **hidden on the live site** until an approved quote is added. |
+| Client logos, accreditations | Not built | Intentionally omitted. Add only genuine, approved material. |
 | Social profiles (e.g. LinkedIn) | `site.social` in `src/config/site.ts` | None supplied, so none are shown. Add as `{ label: 'LinkedIn', href: 'https://…' }`. |
-| Photography | Not used | The brand guidelines favour authentic B2B imagery over stock. None was supplied, so the design relies on typography and layout. Real photography of the team or client contexts could be added to the About page and hero later. |
+| Photography | Not used | None was supplied, and stock photography was not downloaded without your approval. Visual interest comes from original interface mock-ups instead. Real photography (team, workspace, client environments) would strengthen the About page and could sit alongside the hero mock-up. |
+| Pricing or engagement models | Not on the site | The FAQ deliberately avoids prices and minimum engagements. Add an answer if you want to set expectations. |
 
 ## 3. Brand and logo
 
@@ -38,7 +40,9 @@ All copy was written to the brief and brand guidelines, in UK English, without s
 
 - Hero headline: "Generate better B2B demand. Convert more of it."
 - Service descriptions and "typically includes" lists in `src/content/services.ts`. Make sure every listed service is one the studio actually offers, e.g. CRM attribution.
-- "What happens next" on the contact page. It deliberately does not promise a response time. Add one (e.g. "within one working day") only if it can be met consistently.
+- "What happens next" on the contact page and final call to action. It deliberately does not promise a response time. Add one (e.g. "within one working day") only if it can be met consistently.
+- **The three concept projects** in `src/content/work.ts`. They describe fictional but realistic briefs. Check you are happy for each to represent your thinking, and that the deliverables are things you would actually provide.
+- **FAQ answers** in `src/content/faqs.ts`, especially "Can you help with a single project?" (it says yes) and "What happens after the first conversation?" (it says you follow up by email with a view and, if there is a fit, a proposed scope, timescale and cost).
 - Meta titles and descriptions in `src/routes.ts`.
 
 ## 5. Not implemented (by design)
@@ -54,7 +58,7 @@ All copy was written to the brief and brand guidelines, in UK English, without s
 ## 6. Verified during build
 
 - `npm run build` completes without errors. `npm run typecheck` and `npm run lint` are clean.
-- All five routes and the 404 page prerender with unique titles, descriptions, canonical URLs and Open Graph tags. `sitemap.xml` and `robots.txt` are generated.
+- All routes (including /work and each project page) and the 404 page prerender with unique titles, descriptions, canonical URLs and Open Graph tags. `sitemap.xml` and `robots.txt` are generated.
 - No hydration errors when loading the prerendered pages.
 - Checked at mobile (375px), tablet (768px) and desktop (1440px) widths, with no horizontal scrolling.
 - Navigation, mobile menu (including Escape to close), service anchor links, CTAs and the 404 page all work.

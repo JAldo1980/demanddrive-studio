@@ -69,3 +69,14 @@
     outline-color: #fff;
   }
 }
+
+/*
+ * Interface mock-ups scale with their container: inside .mock-canvas, Tailwind
+ * spacing (p-4, gap-2, size-3…) resolves in em, and 1em tracks the container
+ * width. Use text-[Nem] for type sizes inside a mock.
+ */
+@utility mock-canvas {
+  --spacing: 0.25em;
+  font-size: 1.55cqw;
+  line-height: 1.35;
+}

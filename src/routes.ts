@@ -1,3 +1,5 @@
+import { publishedProjects } from './content/work'
+
 /**
  * Page metadata for every route. Used for <head> tags (client and prerender),
  * sitemap.xml and the prerender list. Add new pages here as the site grows.
@@ -20,6 +22,19 @@ export const pages: PageMeta[] = [
       'DemandDrive Studio helps UK B2B businesses generate better demand and convert more of it, combining growth strategy, SEO, landing pages and measurement.',
     priority: 1,
   },
+  {
+    path: '/work',
+    title: 'Work | DemandDrive Studio',
+    description:
+      'How DemandDrive Studio approaches B2B growth problems: concept projects covering landing pages, website structure, SEO and measurement.',
+    priority: 0.8,
+  },
+  ...publishedProjects.map((p) => ({
+    path: `/work/${p.slug}`,
+    title: `${p.title}${p.kind === 'concept' ? ' (concept)' : ''} | DemandDrive Studio`,
+    description: p.summary,
+    priority: 0.6,
+  })),
   {
     path: '/services',
     title: 'Services | DemandDrive Studio',
@@ -64,6 +79,7 @@ export function getPageMeta(pathname: string): PageMeta {
 }
 
 export const mainNav = [
+  { to: '/work', label: 'Work' },
   { to: '/services', label: 'Services' },
   { to: '/about', label: 'About' },
   { to: '/contact', label: 'Contact' },

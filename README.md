@@ -36,7 +36,7 @@ npm run dev       # http://localhost:5173
 In development:
 
 - The enquiry form **does not send anything**. It simulates a successful submission so you can test validation and success states.
-- The "Selected work" section on the homepage shows labelled placeholder cards. On the live site the section is hidden until an approved case study exists.
+- The homepage shows a labelled placeholder where testimonials will go. On the live site the section is hidden until an approved testimonial exists.
 
 Other scripts:
 
@@ -58,6 +58,8 @@ The build writes a static site to `dist/`:
 ```
 dist/
   index.html            /
+  work.html             /work
+  work/<slug>.html      /work/<slug>   (one per project)
   services.html         /services
   about.html            /about
   contact.html          /contact
@@ -98,16 +100,19 @@ scripts/
   generate-icons.mjs        Builds favicon / OG images from the logo symbol
 src/
   config/site.ts            Business details: contact, legal, social (null = unconfirmed)
-  content/                  Copy as data: services, challenges, approach, principles, case studies
+  content/                  Copy as data: services, work (projects), faqs, testimonials,
+                            challenges, approach, principles
   routes.ts                 Page titles, descriptions, sitemap settings, main navigation
   lib/seo.ts                <head> tags for prerender and client navigation
   lib/enquiry.ts            Form validation and submission
   components/
     ui/                     Button, Container, Section, SectionHeading, Placeholder
     layout/                 Header, Footer, Logo, Layout, SkipLink
-    sections/               Page sections (Hero, Challenges, ServicesOverview, Approach, ...)
+    sections/               Page sections (Hero, WorkShowcase, GrowthSystem, Approach, Faq, ...)
+    visuals/                Browser frame and the concept interface mock-ups
+    work/                   Project card and concept/client badge
     EnquiryForm.tsx
-  pages/                    Home, Services, About, Contact, Privacy, NotFound
+  pages/                    Home, Work, WorkDetail, Services, About, Contact, Privacy, NotFound
   App.tsx                   Route definitions
   main.tsx                  Browser entry (hydrates prerendered HTML)
   entry-server.tsx          Prerender entry
@@ -139,7 +144,11 @@ Inter is self-hosted through `@fontsource-variable/inter`, so there are no third
 
 **Add individual service pages:** each service in `src/content/services.ts` has a stable `id`. Add a `services/:id` route, a page that looks the service up by `id`, and a `pages` entry for each service. Then change the links in `ServicesOverview` and the footer from `/services#id` to `/services/id`.
 
-**Add case studies:** add entries to `src/content/caseStudies.ts`. Only entries with `approved: true` are shown, and the homepage "Selected work" section appears automatically once there is at least one. For full case-study pages, follow the same pattern as service pages.
+**Add work:** add a project to `src/content/work.ts`. Each one gets a page at `/work/<slug>`, a sitemap entry and a card on the Work page; the first three also appear on the homepage. Use `kind: 'client'` only for real, approved client work, and set `outcome` only to a verifiable result. Concept projects never show results. For the preview, use an existing mock-up (`landing`, `redesign`, `audit`) or add one in `src/components/visuals/` and register it in `ProjectPreview.tsx`. Real screenshots can replace mock-ups later.
+
+**Add testimonials:** add approved quotes to `src/content/testimonials.ts`. The homepage section appears once at least one has `approved: true`.
+
+**Interface mock-ups:** inside a `BrowserFrame`, the `mock-canvas` utility makes Tailwind spacing scale with the frame's width, so mock-ups stay crisp at any size without images. Use `text-[Nem]` for type sizes inside a mock.
 
 **Add contact details or social links:** edit `src/config/site.ts`. Placeholders disappear as soon as a value is set.
 
