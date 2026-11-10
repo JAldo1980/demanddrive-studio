@@ -1,93 +1,112 @@
 import { Link } from 'react-router'
 import { site } from '../../config/site'
-import { mainNav } from '../../routes'
 import { services } from '../../content/services'
-import { Container } from '../ui/Container'
+import { latestPosts } from '../home/data'
+import { Arrow } from '../home/icons'
 import { Placeholder } from '../ui/Placeholder'
 import { Logo } from './Logo'
 
 const year = new Date().getFullYear()
 
-const linkClass = 'text-on-navy-muted transition-colors hover:text-white'
+const shortServiceNames: Record<string, string> = {
+  'growth-strategy': 'Growth strategy',
+  seo: 'SEO',
+  'landing-pages': 'Landing pages',
+  measurement: 'Measurement',
+}
 
 export function Footer() {
-  const { email, phone, location } = site.contact
+  const { email, location } = site.contact
 
   return (
-    <footer className="on-dark bg-navy text-white">
-      <Container className="py-14 lg:py-16">
-        <div className="grid gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-4">
-            <Link to="/" aria-label="DemandDrive Studio home" className="inline-block">
-              <Logo variant="reverse" className="h-14 w-auto" />
+    <footer className="ftr tone-ink">
+      <div className="wrap">
+        <div className="ftr__top">
+          <p className="d1">
+            Generate better B2B demand. <span className="hl">Convert more of it.</span>
+          </p>
+          <Link className="btn" to="/contact">
+            Discuss a project
+            <span className="btn__i"><Arrow /></span>
+          </Link>
+        </div>
+
+        <div className="grid12 ftr__g">
+          <div className="ftr__b">
+            <Link className="logo" to="/" aria-label="DemandDrive Studio home">
+              <Logo variant="reverse" />
             </Link>
-            <p className="mt-6 max-w-sm leading-relaxed text-on-navy-muted">{site.positioning}</p>
+            <p style={{ margin: 0, color: 'var(--fg-2)', maxWidth: '34ch', fontSize: '.95rem' }}>{site.positioning}</p>
+            {location && <span className="mono" style={{ color: 'var(--fg-3)' }}>{location}</span>}
           </div>
 
-          <nav aria-label="Footer" className="grid gap-10 sm:grid-cols-3 lg:col-span-8">
-            <div>
-              <h2 className="text-sm font-semibold text-white">Studio</h2>
-              <ul className="mt-4 space-y-3">
-                <li><Link to="/" className={linkClass}>Home</Link></li>
-                {mainNav.map((item) => (
-                  <li key={item.to}>
-                    <Link to={item.to} className={linkClass}>{item.label}</Link>
-                  </li>
-                ))}
-                <li><Link to="/free-audit" className={linkClass}>Free landing page audit</Link></li>
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-semibold text-white">Services</h2>
-              <ul className="mt-4 space-y-3">
-                {services.map((s) => (
-                  <li key={s.id}>
-                    <Link to={`/services#${s.id}`} className={linkClass}>{s.title}</Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h2 className="text-sm font-semibold text-white">Contact</h2>
-              <ul className="mt-4 space-y-3">
-                <li>
-                  {email ? (
-                    <a href={`mailto:${email}`} className={linkClass}>{email}</a>
-                  ) : (
-                    <Placeholder dark>email address</Placeholder>
-                  )}
+          <nav className="ftr__c" aria-label="Services">
+            <h2 className="ftr__h mono">Services</h2>
+            <ul>
+              {services.map((s) => (
+                <li key={s.id}>
+                  <Link to={`/services#${s.id}`}>{shortServiceNames[s.id] ?? s.title}</Link>
                 </li>
-                {phone && (
-                  <li>
-                    <a href={`tel:${phone.replace(/\s/g, '')}`} className={linkClass}>{phone}</a>
-                  </li>
-                )}
-                <li>
-                  {location ? <span className="text-on-navy-muted">{location}</span> : <Placeholder dark>location</Placeholder>}
+              ))}
+            </ul>
+          </nav>
+
+          <nav className="ftr__c" aria-label="Work">
+            <h2 className="ftr__h mono">Work</h2>
+            <ul>
+              <li><Link to="/work/industrial-coatings-enquiry-growth">Industrial coatings</Link></li>
+              <li><Link to="/work/water-treatment-record-month">Water treatment</Link></li>
+              <li><Link to="/work/the-circle-line-website">The Circle Line</Link></li>
+              <li><Link to="/work">All work</Link></li>
+            </ul>
+          </nav>
+
+          <nav className="ftr__c" aria-label="Insights">
+            <h2 className="ftr__h mono">Insights</h2>
+            <ul>
+              {latestPosts.map((p) => (
+                <li key={p.slug}>
+                  <Link to={`/insights/${p.slug}`}>{p.title}</Link>
                 </li>
-                {site.social.map((s) => (
-                  <li key={s.href}>
-                    <a href={s.href} className={linkClass} rel="me noopener" target="_blank">
-                      {s.label}
-                      <span className="sr-only"> (opens in a new tab)</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </div>
+              ))}
+              <li><Link to="/insights">All insights</Link></li>
+            </ul>
+          </nav>
+
+          <nav className="ftr__c" aria-label="Studio">
+            <h2 className="ftr__h mono">Studio</h2>
+            <ul>
+              <li><Link to="/about">About</Link></li>
+              <li><Link to="/free-audit">Free audit</Link></li>
+              <li><Link to="/contact">Contact</Link></li>
+              {email && <li><a href={`mailto:${email}`}>Email</a></li>}
+              {site.social.map((s) => (
+                <li key={s.href}>
+                  <a href={s.href} rel="me noopener" target="_blank">
+                    {s.label}
+                    <span className="sr-only"> (opens in a new tab)</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
           </nav>
         </div>
 
-        <div className="mt-14 flex flex-col gap-4 border-t border-line-dark pt-8 text-sm text-on-navy-muted sm:flex-row sm:items-center sm:justify-between">
-          <p>
+        <div className="ftr__bot">
+          <span>
             © {year} {site.legal.companyName ?? site.name}.{' '}
-            {site.legal.companyNumber ? `Registered in England and Wales, no. ${site.legal.companyNumber}.` : <Placeholder dark>company registration details</Placeholder>}
-          </p>
-          <Link to="/privacy" className={linkClass}>Privacy notice</Link>
+            {site.legal.companyNumber ? (
+              `Registered in England and Wales, no. ${site.legal.companyNumber}.`
+            ) : (
+              <Placeholder dark>company registration details</Placeholder>
+            )}
+          </span>
+          <span style={{ display: 'flex', gap: 20 }}>
+            <Link to="/privacy">Privacy</Link>
+            <a href="#main">Back to top ↑</a>
+          </span>
         </div>
-      </Container>
+      </div>
     </footer>
   )
 }

@@ -1,20 +1,29 @@
 @import 'tailwindcss';
+@import './styles/dd.css';
 
-/* Brand tokens: see DemandDrive Studio brand guidelines v1.0, section 03. */
+/*
+ * Brand tokens. Palette shared with James Alderman's portfolio (Nov 2026):
+ * cream paper, warm ink, deep blue, navy and a mustard highlighter yellow.
+ * The original token names are kept so every page picks up the new palette.
+ */
 @theme {
-  --color-navy: #0b1f3a;
-  --color-navy-800: #132b4d;
-  --color-electric: #1769ff;
-  --color-electric-600: #0f56d9;
-  --color-charcoal: #252b36;
-  --color-cool: #f4f6fa;
-  --color-muted: #535b6b;
-  --color-line: #dde3ec;
-  --color-line-dark: #24395a;
-  --color-on-navy-muted: #b9c4d6;
+  --color-navy: #0e2c46;
+  --color-navy-800: #12385a;
+  --color-electric: #1c5b8e;
+  --color-electric-600: #164a74;
+  --color-charcoal: #14181d;
+  --color-cool: #eae4d6;
+  --color-paper: #f5f1e8;
+  --color-highlight: #f2c53b;
+  --color-muted: #4a5260;
+  --color-line: #ddd5c2;
+  --color-line-dark: #1e4466;
+  --color-on-navy-muted: #d4d3ce;
   --color-danger: #b42318;
 
-  --font-sans: 'Inter Variable', Inter, Arial, Helvetica, sans-serif;
+  --font-sans: 'Instrument Sans', system-ui, -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-display: 'Archivo', system-ui, Arial, sans-serif;
+  --font-mono: 'Roboto Mono', ui-monospace, monospace;
 
   --container-site: 76rem;
 }
@@ -38,8 +47,7 @@
   }
 
   body {
-    @apply bg-white font-sans text-charcoal antialiased;
-    font-feature-settings: 'cv11', 'ss01';
+    @apply bg-paper font-sans text-charcoal antialiased;
     text-rendering: optimizeLegibility;
   }
 
@@ -47,7 +55,7 @@
   h2,
   h3,
   h4 {
-    @apply text-navy text-balance;
+    @apply font-display text-navy text-balance;
   }
 
   p {
@@ -55,7 +63,7 @@
   }
 
   ::selection {
-    @apply bg-electric text-white;
+    @apply bg-highlight text-charcoal;
   }
 
   /* Visible, consistent keyboard focus. Dark sections switch to white. */

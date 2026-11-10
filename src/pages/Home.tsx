@@ -1,29 +1,33 @@
-import { AboutTeaser } from '../components/sections/AboutTeaser'
-import { AuditPromo } from '../components/sections/AuditPromo'
-import { Approach } from '../components/sections/Approach'
-import { Challenges } from '../components/sections/Challenges'
-import { Faq } from '../components/sections/Faq'
-import { FinalCta } from '../components/sections/FinalCta'
-import { GrowthSystem } from '../components/sections/GrowthSystem'
-import { Hero } from '../components/sections/Hero'
-import { Testimonials } from '../components/sections/Testimonials'
-import { TrackRecord } from '../components/sections/TrackRecord'
-import { WorkShowcase } from '../components/sections/WorkShowcase'
+import { HomeContact } from '../components/home/HomeContact'
+import {
+  HomeAbout,
+  HomeAttract,
+  HomeConvert,
+  HomeHero,
+  HomeImprove,
+  HomeInsights,
+  HomeMeasure,
+  HomeWork,
+  StageBar,
+} from '../components/home/HomeSections'
 
+/**
+ * Homepage: an annotated growth report in four chapters
+ * (Attract, Convert, Measure, Improve), then About, Insights and a conversational enquiry form.
+ */
 export default function Home() {
   return (
     <>
-      <Hero />
-      <TrackRecord />
-      <WorkShowcase />
-      <Testimonials />
-      <AuditPromo />
-      <Challenges />
-      <GrowthSystem />
-      <Approach />
-      <AboutTeaser />
-      <Faq />
-      <FinalCta />
+      <HomeHero />
+      <HomeAttract />
+      <HomeConvert />
+      <HomeMeasure />
+      <HomeImprove />
+      <HomeWork />
+      <HomeAbout />
+      <HomeInsights />
+      <HomeContact />
+      <StageBar />
     </>
   )
 }
