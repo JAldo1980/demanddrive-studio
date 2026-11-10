@@ -654,7 +654,9 @@ export function StageBar() {
         if (el.getBoundingClientRect().top < vh * 0.45) current = Number(el.dataset.stage)
       })
       setStage(current)
-      setVisible(window.scrollY > vh * 0.6 && !document.body.style.overflow)
+      const footer = document.querySelector('footer')
+      const footerInView = footer ? footer.getBoundingClientRect().top < vh : false
+      setVisible(window.scrollY > vh * 0.6 && !footerInView && !document.body.style.overflow)
     }
     const onScroll = () => {
       if (!frame) frame = requestAnimationFrame(update)
