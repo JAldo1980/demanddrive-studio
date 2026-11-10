@@ -6,8 +6,11 @@
  * keep the lock-up identical where Arial is used as the fallback.
  */
 
-const NAVY = '#0B1F3A'
-const BLUE = '#1769FF'
+/* Palette shared with the site (Nov 2026): warm ink, deep blue and highlighter yellow. */
+const INK = '#14181D'
+const BLUE = '#1C5B8E'
+const YELLOW = '#F2C53B'
+const CREAM = '#F5F1E8'
 
 /** Symbol bounds within the master artboard: x 141–415, y 190–450. */
 const SYMBOL_D =
@@ -20,7 +23,10 @@ type LogoProps = {
 }
 
 export function Logo({ variant = 'primary', className = '' }: LogoProps) {
-  const ink = variant === 'reverse' ? '#FFFFFF' : NAVY
+  const reverse = variant === 'reverse'
+  const ink = reverse ? CREAM : INK
+  // On dark backgrounds the arrow and "Drive" switch to yellow, which keeps strong contrast.
+  const accent = reverse ? YELLOW : BLUE
   return (
     <svg
       viewBox="141 190 1040 260"
@@ -30,12 +36,12 @@ export function Logo({ variant = 'primary', className = '' }: LogoProps) {
       fontFamily="Helvetica, 'Helvetica Neue', Arial, sans-serif"
     >
       <path d={SYMBOL_D} fill={ink} fillRule="evenodd" />
-      <polygon points={SYMBOL_ARROW} fill={BLUE} fillRule="evenodd" />
+      <polygon points={SYMBOL_ARROW} fill={accent} fillRule="evenodd" />
       <text y="360" fontSize="112" fontWeight="700">
         <tspan x="455" fill={ink} textLength="442" lengthAdjust="spacingAndGlyphs">
           Demand
         </tspan>
-        <tspan x="898" fill={variant === 'reverse' ? '#FFFFFF' : BLUE} textLength="280" lengthAdjust="spacingAndGlyphs">
+        <tspan x="898" fill={accent} textLength="280" lengthAdjust="spacingAndGlyphs">
           Drive
         </tspan>
       </text>
