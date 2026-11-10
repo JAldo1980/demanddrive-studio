@@ -432,6 +432,8 @@ a:hover .rnd .ar,a:focus-visible .rnd .ar{transform:rotate(-45deg)}
 .stagebar a[aria-current="step"] span{display:inline}
 }
 @media (max-width:600px){
+.hdr__bar>.btn{display:none}
+.logo svg{height:38px}
 .stats{grid-template-columns:1fr}
 .btn{padding-left:18px}
 }

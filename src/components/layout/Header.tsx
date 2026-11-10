@@ -137,6 +137,19 @@ export function Header() {
     }
   }, [])
 
+  // Escape closes the open mega menu wherever focus is.
+  useEffect(() => {
+    if (menu === null) return
+    const onKey = (e: globalThis.KeyboardEvent) => {
+      if (e.key !== 'Escape') return
+      const inHeader = headerRef.current?.contains(document.activeElement) ?? false
+      setMenu(null)
+      if (inHeader) navTriggers()[menu]?.focus()
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [menu])
+
   // Close the mega menu below the desktop breakpoint.
   useEffect(() => {
     const mq = window.matchMedia(DESKTOP)
